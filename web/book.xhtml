@@ -17,7 +17,11 @@
         <ui:composition template="WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
+                              
                 <ui:fragment rendered="#{bookBean.bookExists}">
+                    
+                               
+                                        
 
                 <div class="row" >
                     <div class="large-3 columns" >
@@ -40,7 +44,13 @@
                                     </p>
                                 </div>
                                 <div class="large-5 columns" >
-                                    <p class="text-right"><button class="button small green"><i class="fa fa-info-plus"></i> Ajouter au panier</button></p>
+                                    <p class="text-right">
+                                        <h:form>  
+                                            <h:commandButton class="button small green" value="Ajouter au panier" action="#{cartBean.incrementBookForm(bookBean.currentBook.id)}"/>
+                                       
+                                        </h:form>
+                                        <!--<button class="button small green"><i class="fa fa-info-plus"></i> Ajouter au panier</button>-->
+                                    </p>
                                 </div>
                         </div>
                         <p>Description : <h:outputText value="#{bookBean.currentBook.description}" /></p>
@@ -92,7 +102,9 @@
                     <li>Nombre de pages : 64 pages (relié)</li>
                 </ul>
                 -->
+
                     </ui:fragment>
+                         
             </ui:define>
             
         </ui:composition>
