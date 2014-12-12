@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head> </h:head>
+    <h:body>
+        <ui:composition template="WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+
+                <div class="text-center">
+                    <h3><i class="fa fa-user"></i> Mon Compte</h3>
+                    <p>Voici vos informations personnelles :</p>
+                    <h:form>
+                    <table style="margin-left:auto;margin-right:auto;">
+                        <tbody>
+                            <tr>
+                                <td>Prénom :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Nom :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Téléphone :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Mot de passe :</td>
+                                <td>******</td>
+                            </tr>
+                            <tr>
+                                <td>Adresse :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Ville :</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Pays :</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </h:form>
+                    <p><h:link outcome="/myAccountModify" class="button green"><i class="fa fa-cog"></i> Modifier</h:link></p>
+                </div>
+
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

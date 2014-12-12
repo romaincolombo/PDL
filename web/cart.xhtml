@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head> </h:head>
+    <h:body>
+        <!--<f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookBean.id}"/>
+                <f:event type="preRenderView" listener="#{tracker.reset}"/>            
+            </f:metadata>
+        </f:view>-->
+        
+        <ui:composition template="WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+
+                <div class="row" >
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-shopping-cart"></i> Mon Panier</h3>
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <tbody>
+                                <tr>
+                                    <td><h:outputText value="#{book.title}" /></td>
+                                    <td><h:outputText value="#{book.price}" /></td>
+                                    <td><h:outputText value="#{book.quantity}" /></td>
+                                    <td><h:outputText value="#{book.total}" /></td>
+                                    <td>
+                                        <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
+                                        <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
+                                        <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
+                                    </td>
+                                </tr>
+                                <!--<c:forEach var="book" items="#{cartBean.getBooks}">
+                                        
+                                    <tr>
+                                        <td><h:outputText value="#{book.title}" /></td>
+                                        <td><h:outputText value="#{book.quantity}" /></td>
+                                        <td>
+                                            <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
+                                            <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
+                                            <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>-->
+                            </tbody>
+                            <thead>
+                                <tr><th>Nom</th><th>Prix</th><th>Quantité</th><th>Total</th><th>Actions</th></tr>
+                            </thead>
+                        </table>
+                        <p class="text-center"><button class="button small green"><i class="fa fa-credit-card"></i> Commander</button></p>
+                    </div>
+                </div>
+
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+
