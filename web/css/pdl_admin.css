@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12 déc. 2014, 19:45:39
+    Author     : douceraa
+*/
+
+h1, h2, h3, h4, h5, h6{
+        color : #ff5500;
+}
+
+a {
+        color : #ff5500;
+}
+
+body {
+        background-image: none;
+        background-color: #000;
+}

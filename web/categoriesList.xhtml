@@ -10,21 +10,21 @@
         <ui:composition template="WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
-                    <h3><i class="fa fa-bookmark-o"></i> Rubriques</h3>
-                    <c:forEach var="category" items="#{categoryBean.allCategories}">
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <h3>
-                                    <h:link outcome="/category" >
-                                        <f:param name="id" value="#{category.id}" />
-                                        <h:outputText value="#{category.name}"/>
-                                    </h:link>
-                                </h3>
-                                <h:outputText value="#{category.description}" />
-                            </div>
+                <h3><i class="fa fa-bookmark-o"></i> Rubriques</h3>
+                <c:forEach var="category" items="#{categoryBean.allCategories}">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <h3>
+                                <h:link outcome="/category" >
+                                    <f:param name="id" value="#{category.id}" />
+                                    <h:outputText value="#{category.name}"/>
+                                </h:link>
+                            </h3>
+                            <h:outputText value="#{category.description}" />
                         </div>
-                        <hr/>
-                    </c:forEach>
+                    </div>
+                    <hr/>
+                </c:forEach>
             </ui:define>
             
         </ui:composition>
