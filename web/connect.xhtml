@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head> </h:head>
+    <h:body>
+        <!--<f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookBean.id}"/>
+                <f:event type="preRenderView" listener="#{tracker.reset}"/>            
+            </f:metadata>
+        </f:view>-->
+        
+        <ui:composition template="WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+
+                <div class="row">
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-sign-in"></i> Connexion</h3>
+                        <h:form>
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <tbody>
+                                    <tr>
+                                        <td>Login</td>
+                                        <td><h:inputText value="#{book.price}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mot de passe</td>
+                                        <td><h:inputText value="#{book.price}" /></td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        </h:form>
+                        <p class="text-center"><h:commandButton value="Envoyer" class="button" /></p>
+                    </div>
+                </div>
+
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -20,45 +20,45 @@
                 <!-- data-topbar  -->
                 <nav class="top-bar" data-topbar="" role="navigation"> 
                     <ul class="title-area"> 
-                            <li class="toggle-topbar menu-icon">
-                                    <a href="#"><span>Menu</span></a>
-                            </li> 
+                        <li class="toggle-topbar menu-icon">
+                                <h:link ><span>Menu</span></h:link>
+                        </li> 
                     </ul>
                     <section class="top-bar-section"> <!-- Right Nav Section --> 
                         <ul class="left">
                             <li><h:link outcome="/index"><i class="fa fa-info-circle"></i> Accueil</h:link></li>
-                                <li class="has-dropdown"> 
-                                    <h:link outcome="/categoriesList"><i class="fa fa-bookmark-o"></i> Rubriques</h:link>
-                                        <ul class="dropdown">
-                                            <c:forEach var="category" items="#{categoryBean.allCategories}">
-                                                    <li>
-                                                        <h:link outcome="/category">
-                                                                <f:param name="id" value="#{category.id}" />
-                                                                <h:outputText value="#{category.name}" />
-                                                        </h:link>
-                                                    </li>
-                                            </c:forEach>
-                                        </ul>
-                                </li>
-                                <li><a href="#"><i class="fa fa-bullhorn"></i> Nouveautés</a></li>
+                            <li class="has-dropdown"> 
+                                <h:link outcome="/categoriesList"><i class="fa fa-bookmark-o"></i> Rubriques</h:link>
+                                <ul class="dropdown">
+                                    <c:forEach var="category" items="#{categoryBean.allCategories}">
+                                            <li>
+                                                <h:link outcome="/category">
+                                                        <f:param name="id" value="#{category.id}" />
+                                                        <h:outputText value="#{category.name}" />
+                                                </h:link>
+                                            </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                            <li><h:link outcome="/newBooks"><i class="fa fa-bullhorn"></i> Nouveautés</h:link></li>
                         </ul>
                         <ul class="right">
                             <li class="has-dropdown"> 
-                                <a href="#"><i class="fa fa-user"></i> Administration</a>
+                                <h:link ><i class="fa fa-user"></i> Administration</h:link>
                                 <ul class="dropdown">
-                                    <li class="has-dropdown"><a href="#">Gestion du catalogue</a>
+                                    <li class="has-dropdown"><h:link >Gestion du catalogue</h:link>
                                             <ul class="dropdown">
                                                     <li>
-                                                        <h:link outcome="/rubriques">
+                                                        <h:link >
                                                             Gestion des rubriques
                                                         </h:link>
                                                     </li>
-                                                    <li><a href="#">Gestion des livres</a></li>
-                                                    <li><a href="#">Gestion des nouveautés</a></li>
+                                                    <li><h:link >Gestion des livres</h:link></li>
+                                                    <li><h:link >Gestion des nouveautés</h:link></li>
                                             </ul>
                                     </li>
-                                    <li><a href="#">Gestion des commandes</a></li>
-                                    <li><a href="#">Gestion des clients</a></li>
+                                    <li><h:link >Gestion des commandes</h:link></li>
+                                    <li><h:link >Gestion des clients</h:link></li>
                                 </ul>
                             </li>
                             <li>
@@ -67,15 +67,15 @@
                                 </h:link>
                             </li>
                             <li class="has-dropdown"> 
-                                    <a href="#"><i class="fa fa-user"></i> Mon Compte</a>
+                                    <h:link ><i class="fa fa-user"></i> Mon Compte</h:link>
                                     <ul class="dropdown">
-                                            <li><a href="#">Mes informations personnelles</a></li>
-                                            <li><a href="#">Mes commandes</a></li>
+                                            <li><h:link >Mes informations personnelles</h:link></li>
+                                            <li><h:link >Mes commandes</h:link></li>
                                     </ul>
                             </li>
                             <!--
-                            <li><a href="#"><i class="fa fa-plug"></i> S'authentifier</a></li>
-                            <li><a href="#"><i class="fa fa-edit"></i> S'inscrire</a></li>-->
+                            <li><h:link ><i class="fa fa-plug"></i> S'authentifier</h:link></li>
+                            <li><h:link ><i class="fa fa-edit"></i> S'inscrire</h:link></li>-->
                         </ul>
                     </section>
                 </nav>
@@ -83,12 +83,12 @@
 	</div>
 	
 	<div class="row">
-	  <div class="large-12 columns text-center" style="margin-top:30px;margin-bottom:20px;">
-			<form action="" method="post">
-				<i class="fa fa-search"></i> Recherche 
-				<input type="text" name="search" placeholder="Nom de livre, nom d'une série, code ISBN-13..." style="width:60%;display:inline;margin-left:5px;margin-right:5px;" />
-				<input type="submit" class="button secondary small" value="Rechercher" style="padding:10px;" />
-			</form>
+	  <div class="large-12 columns text-center" id="conteneur-recherche">
+            <h:form>
+                <i class="fa fa-search"></i> Recherche 
+                <h:inputText id="search" style=" width:60%; display:inline; margin-left:5px; margin-right:5px;" />
+                <h:commandButton class="button secondary small" value="Rechercher" style="padding:10px;" action="search" />
+            </h:form>
 	  </div>
 	</div>
  
