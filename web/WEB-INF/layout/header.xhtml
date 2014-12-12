@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head></h:head>
+<h:body>
+    <ui:composition>
+ 
+    <div class="row">
+	  <div class="large-12 columns">
+		<img src="#{facesContext.externalContext.requestContextPath}/img/hautban.png" />
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="large-12 columns">
+                <!-- data-topbar  -->
+                <nav class="top-bar" data-topbar="" role="navigation"> 
+                    <ul class="title-area"> 
+                            <li class="toggle-topbar menu-icon">
+                                    <a href="#"><span>Menu</span></a>
+                            </li> 
+                    </ul>
+                    <section class="top-bar-section"> <!-- Right Nav Section --> 
+                        <ul class="left">
+                            <li><h:link outcome="/index"><i class="fa fa-info-circle"></i> Accueil</h:link></li>
+                                <li class="has-dropdown"> 
+                                    <h:link outcome="/categoriesList"><i class="fa fa-bookmark-o"></i> Rubriques</h:link>
+                                        <ul class="dropdown">
+                                            <c:forEach var="category" items="#{categoryBean.allCategories}">
+                                                    <li>
+                                                        <h:link outcome="/category">
+                                                                <f:param name="id" value="#{category.id}" />
+                                                                <h:outputText value="#{category.name}" />
+                                                        </h:link>
+                                                    </li>
+                                            </c:forEach>
+                                        </ul>
+                                </li>
+                                <li><a href="#"><i class="fa fa-bullhorn"></i> Nouveautés</a></li>
+                        </ul>
+                        <ul class="right">
+                            <li class="has-dropdown"> 
+                                <a href="#"><i class="fa fa-user"></i> Administration</a>
+                                <ul class="dropdown">
+                                    <li class="has-dropdown"><a href="#">Gestion du catalogue</a>
+                                            <ul class="dropdown">
+                                                    <li>
+                                                        <h:link outcome="/rubriques">
+                                                            Gestion des rubriques
+                                                        </h:link>
+                                                    </li>
+                                                    <li><a href="#">Gestion des livres</a></li>
+                                                    <li><a href="#">Gestion des nouveautés</a></li>
+                                            </ul>
+                                    </li>
+                                    <li><a href="#">Gestion des commandes</a></li>
+                                    <li><a href="#">Gestion des clients</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h:link outcome="/cart">
+                                    <i class="fa fa-shopping-cart"></i> Mon Panier
+                                </h:link>
+                            </li>
+                            <li class="has-dropdown"> 
+                                    <a href="#"><i class="fa fa-user"></i> Mon Compte</a>
+                                    <ul class="dropdown">
+                                            <li><a href="#">Mes informations personnelles</a></li>
+                                            <li><a href="#">Mes commandes</a></li>
+                                    </ul>
+                            </li>
+                            <!--
+                            <li><a href="#"><i class="fa fa-plug"></i> S'authentifier</a></li>
+                            <li><a href="#"><i class="fa fa-edit"></i> S'inscrire</a></li>-->
+                        </ul>
+                    </section>
+                </nav>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="large-12 columns text-center" style="margin-top:30px;margin-bottom:20px;">
+			<form action="" method="post">
+				<i class="fa fa-search"></i> Recherche 
+				<input type="text" name="search" placeholder="Nom de livre, nom d'une série, code ISBN-13..." style="width:60%;display:inline;margin-left:5px;margin-right:5px;" />
+				<input type="submit" class="button secondary small" value="Rechercher" style="padding:10px;" />
+			</form>
+	  </div>
+	</div>
+ 
+    </ui:composition>
+</h:body>
+</html>

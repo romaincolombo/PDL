@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head> </h:head>
+    <h:body>
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookBean.bookId}"/>
+                <f:event type="preRenderView" listener="#{bookBean.initBook}"/>            
+            </f:metadata>
+        </f:view>
+        
+        <ui:composition template="WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+                <ui:fragment rendered="#{bookBean.bookExists}">
+
+                <div class="row" >
+                    <div class="large-3 columns" >
+                        <img style="width:100%" src="#{facesContext.externalContext.requestContextPath}/img/books/#{bookBean.currentBook.image}" />
+                    </div>
+                    <div class="large-9 columns" >
+                        <h3><h:outputText value="#{bookBean.currentBook.title}" /></h3>
+                        <p>de <h:outputText value="#{bookBean.currentBook.author}" /></p>
+                        <div class="row" >
+                                <div class="large-7 columns" >
+                                    <p style="color:#FF6666;">Prix : 
+                                        <h:outputText value="#{bookBean.currentBook.price}">
+                                                <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                        </h:outputText>
+                                        <ui:fragment rendered="#{bookBean.currentBook.stock lt 10}">
+                                            <br />
+                                            <span style="color:#FF0000;font-size:0.9em;"> 
+                                        Il reste peu d'exemplaires (<h:outputText value="#{bookBean.currentBook.stock}" />), dépêchez-vous !</span>
+                                        </ui:fragment>
+                                    </p>
+                                </div>
+                                <div class="large-5 columns" >
+                                    <p class="text-right"><button class="button small green"><i class="fa fa-info-plus"></i> Ajouter au panier</button></p>
+                                </div>
+                        </div>
+                        <p>Description : <h:outputText value="#{bookBean.currentBook.description}" /></p>
+                    </div>
+                </div>
+
+                <p>Autres informations :</p>
+                <ul>
+                    <li>Editeur : <h:outputText value="#{bookBean.currentBook.publisher}" /></li>
+                    <li>Date de parution : <h:outputText value="#{bookBean.currentBook.dateBook}" >
+                                                <f:convertDateTime pattern="d-M-yyyy" />
+                                            </h:outputText></li>
+                    <li>Langage : <h:outputText value="#{bookBean.currentBook.languageBook}" /></li>
+                    <li>Note des visiteurs : <h:outputText value="#{bookBean.currentBook.rating}" />/10</li>
+                    <li>ISBN-13 : <h:outputText value="#{bookBean.currentBook.isbn}" /></li>
+                    <li>Nombre de pages : <h:outputText value="#{bookBean.currentBook.hardcover}" /> pages</li>
+                </ul>
+                
+                
+                <!--
+                
+                <div class="row" >
+                    <div class="large-3 columns" >
+                            <img style="width:100%" src="img/cover-blake.jpg" />
+                    </div>
+                    <div class="large-9 columns" >
+                            <h3>Blake et Mortimer, tome 23 : le Baton de Plutarque</h3>
+                            <p>de Yves Sente (Auteur), André Juillard (Illustrations)</p>
+                            <div class="row" >
+                                    <div class="large-7 columns" >
+                                            <p style="color:#FF6666;">Prix : EUR 15,95<br />
+                                            <span style="color:#FF0000;font-size:0.9em;">Il reste peu d'exemplaires, dépêchez-vous !</span></p>
+                                    </div>
+                                    <div class="large-5 columns" >
+                                            <p class="text-right"><button class="button small green"><i class="fa fa-info-plus"></i> Ajouter au panier</button></p>
+                                    </div>
+                            </div>
+                            <p>Description : 1944 : le capitaine Blake réussit, aux commandes d'un prototype, à déjouer une attaque suicide contre le Parlement anglais. Un exploit qui lui vaut d'être recruté par le MI 6. Sa mission ? Faire gagner aux Alliés la Deuxième Guerre mondiale et les préparer pour... la troisième ! Arrivé dans l'une des bases secrètes du MI 6, Blake découvre que son partenaire n'est autre que Mortimer, son ami d'enfance.</p>
+                    </div>
+                </div>
+
+                <p>Autres informations :</p>
+                <ul>
+                    <li>Editeur : BLAKE & MORTIMER</li>
+                    <li>Date de parution : 5 décembre 2014</li>
+                    <li>Langage : Français</li>
+                    <li>Note des visiteurs : 9,4/10</li>
+                    <li>ISBN-13 : 978-2870971932</li>
+                    <li>Nombre de pages : 64 pages (relié)</li>
+                </ul>
+                -->
+                    </ui:fragment>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+
