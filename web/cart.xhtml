@@ -3,15 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head> </h:head>
     <h:body>
-        <!--<f:view>
-            <f:metadata>
-                <f:viewParam name="id" value="#{bookBean.id}"/>
-                <f:event type="preRenderView" listener="#{tracker.reset}"/>            
-            </f:metadata>
-        </f:view>-->
+
         
         <ui:composition template="WEB-INF/layout/layout.xhtml">
             
@@ -20,37 +16,68 @@
                 <div class="row" >
                     <div class="large-12 columns" >
                         <h3><i class="fa fa-shopping-cart"></i> Mon Panier</h3>
-                        <table style="margin-left:auto;margin-right:auto;">
-                            <tbody>
-                                <tr>
-                                    <td><h:outputText value="#{book.title}" /></td>
-                                    <td><h:outputText value="#{book.price}" /></td>
-                                    <td><h:outputText value="#{book.quantity}" /></td>
-                                    <td><h:outputText value="#{book.total}" /></td>
-                                    <td>
-                                        <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
-                                        <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
-                                        <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
-                                    </td>
-                                </tr>
-                                <!--<c:forEach var="book" items="#{cartBean.getBooks}">
-                                        
-                                    <tr>
-                                        <td><h:outputText value="#{book.title}" /></td>
-                                        <td><h:outputText value="#{book.quantity}" /></td>
-                                        <td>
-                                            <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
-                                            <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
-                                            <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>-->
-                            </tbody>
-                            <thead>
-                                <tr><th>Nom</th><th>Prix</th><th>Quantité</th><th>Total</th><th>Actions</th></tr>
-                            </thead>
-                        </table>
-                        <p class="text-center"><button class="button small green"><i class="fa fa-credit-card"></i> Commander</button></p>
+                        
+                        <c:choose>
+                            <c:when test="#{cartBean.numberOfItems eq 0}">
+                                <div class="alert-box secondary">Panier Vide</div>
+                            </c:when>
+                            <c:otherwise>
+                                <table style="margin-left:auto;margin-right:auto;">
+                                    <tbody>
+                                        <!--<tr>
+                                            <td><h:outputText value="#{book.title}" /></td>
+                                            <td><h:outputText value="#{book.price}" /></td>
+                                            <td><h:outputText value="#{book.quantity}" /></td>
+                                            <td><h:outputText value="#{book.total}" /></td>
+                                            <td>
+                                                <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
+                                                <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
+                                                <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
+                                            </td>
+                                        </tr>-->
+                                        <c:forEach var="cartItem" items="#{cartBean.cart}">
+
+                                            <tr>
+                                                <td><h:outputText value="#{cartItem.key.title}" /></td>
+                                                <td>
+                                                    <h:outputText value="#{cartItem.key.price}">
+                                                            <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                    </h:outputText>
+                                                </td>
+                                                <td><h:outputText value="#{cartItem.value}" /></td>
+                                                <td>
+                                                <h:outputText value="#{cartItem.key.price * cartItem.value}">
+                                                            <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                </h:outputText>
+                                                </td>
+                                                <td>
+                                                    <h:form>
+                                                        <h:commandButton class="button tiny fa fa-plus" action="#{cartBean.incrementBookForm(cartItem.key.id)}" value="+"/>
+                                                        <h:commandButton class="button tiny fa fa-minus" action="#{cartBean.decrementBookForm(cartItem.key.id)}" value="-"/>
+                                                        <h:commandButton class="button tiny alert fa fa-close" action="#{cartBean.removeBookForm(cartItem.key.id)}" value="x"/>
+                                                    </h:form>
+                                                    <!--
+                                                    <a href="" class="button tiny"><i class="fa fa-plus"></i></a> 
+
+                                                    <a href="" class="button tiny"><i class="fa fa-minus"></i></a> 
+                                                    <a href="" class="button tiny alert"><i class="fa fa-close"></i></a>
+                                                    -->
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        <tr>
+                                            <td>Total :</td>
+                                            <td colspan="3" class="text-right"><h:outputText value="#{cartBean.total}"><f:convertNumber currencySymbol="&euro; " type="currency"/></h:outputText></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr><th>Titre</th><th>Prix</th><th>Quantité</th><th>Total</th><th>Actions</th></tr>
+                                    </thead>
+                                </table>
+                                <p class="text-center"><button class="button small green"><i class="fa fa-credit-card"></i> Commander</button></p>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
 
