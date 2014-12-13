@@ -2,20 +2,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
-                    <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-bookmark-o"></i> Liste des rubriques</h3>
+                    
+                    <table style="margin-left: auto;margin-right:auto;">
+                        <c:forEach var="category" items="#{categoryAdminBean.allCategories}">
+                                <tr>
+                                    <td>
+                                        <h:link outcome="/category" >
+                                            <f:param name="id" value="#{category.id}" />
+                                            <h:outputText value="#{category.name}"/>
+                                        </h:link>
+                                    </td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton class="button tiny " value="Modifier"/>
+                                        </h:form>
+                                    </td>
+                                </tr>
+                        </c:forEach>
                     </table>
-                    </h:form>
                 </div>
             </ui:define>
             

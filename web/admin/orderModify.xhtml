@@ -5,16 +5,65 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier une commande</h3>
+                    
                     <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
-                    </table>
+                        <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Date" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.date}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Etat" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.state}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Montant total" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.totalPrice}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Numéro de la carte de crédit" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.ccNumber}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Type de la carte" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.ccType}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Date d'expiration de la carte" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{orderAdminBean.ccExpiry}" />
+                                </td>
+                            </tr>
+                        </table>
+                        <h:commandButton class="button tiny " value="Modifier" />
                     </h:form>
                 </div>
             </ui:define>

@@ -3,9 +3,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><ui:insert name="title">Printemps du Livre - Maison d'Edition</ui:insert></title>
+        <link rel="icon" type="image/png" href="#{facesContext.externalContext.requestContextPath}/img/logo.png" />
 	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/foundation.css" />
 	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/pdl.css" />
+        <ui:insert name="css"></ui:insert>
 	<script src="#{facesContext.externalContext.requestContextPath}/js/vendor/modernizr.js"></script>
 </h:head>
 <h:body>
@@ -30,16 +32,18 @@
 		  <div id="content-container" class="large-12 columns">
 			
 			<div class="row" id="content">
-			  <div class="large-3 columns">
-				<ui:insert name="rightnav">
-				    <ui:include src="rightnav.xhtml" />
-				</ui:insert>
-			  </div>
-			  <div class="large-9 columns" id="sidebar">
-				<ui:insert name="content">
-				    <ui:include src="accueil.xhtml" />
-				</ui:insert>
-			  </div>
+                            <div class="large-3 columns">
+                                  <ui:insert name="rightnav">
+                                      <ui:include src="rightnav.xhtml" />
+                                  </ui:insert>
+                            </div>
+                            <div class="large-9 columns" id="sidebar">
+                                  <ui:insert name="sectionTitle">
+                                  </ui:insert>
+                                  <ui:insert name="content">
+                                      <ui:include src="accueil.xhtml" />
+                                  </ui:insert>
+                            </div>
 			</div>
 			
 		  </div>
