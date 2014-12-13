@@ -5,16 +5,105 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un livre</h3>
+                    
                     <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
-                    </table>
+                        <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Titre" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.title}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Description" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.description}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Auteur" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.author}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Editeur" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.publisher}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Date" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.date}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Prix" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.price}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Langage" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.language}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Nombre en stock" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.stock}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Note" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.rating}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Numéro ISBN" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.isbn}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Nombre de pages" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{bookAdminBean.hardcover}" />
+                                </td>
+                            </tr>
+                        </table>
+                        <h:commandButton class="button tiny " value="Modifier" />
                     </h:form>
                 </div>
             </ui:define>
