@@ -12,6 +12,7 @@ import Entity.CustomerOrder;
 import Entity.OrderLine;
 import Entity.OrderLinePK;
 import Facade.CategoryFacade;
+import Utils.PasswordHash;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.logging.Level;
@@ -100,16 +101,18 @@ public class InstallBean {
             em.persist(book_test2);
             
             
-            /*
+            
             Customer cust_test1 = new Customer();
-            cust_test1.setEmail("test@test.com");
-            cust_test1.setPassword("1234");
+            cust_test1.setFirstName("Romain");
+            cust_test1.setLastName("Colombo");
+            cust_test1.setPasswordHash(PasswordHash.createHash("1234"));
+            cust_test1.setEmail("a@b.com");
             em.persist(cust_test1);
             
             
             em.flush();
             
-            
+            /*
             CustomerOrder order_test1 = new CustomerOrder();
             order_test1.setCustomer(cust_test1);
             em.persist(order_test1);

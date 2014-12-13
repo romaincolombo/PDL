@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head> </h:head>
+    <h:body>
+        
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">         
+                <c:choose>
+                    <c:when test="#{cartBean.numberOfItems eq 0}">Vous n'avez pas d'articles</c:when>
+                    <c:when test="#{not connectBean.connected}">Veuillez vous connecter</c:when>
+                    <c:otherwise>Checkout OK</c:otherwise>
+                </c:choose>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

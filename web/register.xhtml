@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head> </h:head>
+    <h:body>
+        
+        <ui:composition template="WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+
+                <div class="row">
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-sign-in"></i> Inscription</h3>
+                        <h:form>
+                            <table style="margin-left:auto;margin-right:auto;">
+                                <tbody>
+                                    <tr>
+                                        <td>Nom</td>
+                                        <td>
+                                            <h:inputText id="lastname" value="#{customerBean.lastName}" />
+                                            <h:message for="lastname" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prénom</td>
+                                        <td>
+                                            <h:inputText id="firstname" value="#{customerBean.firstName}" />
+                                            <h:message for="firstname" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <td>
+                                            <h:inputText id="email" value="#{customerBean.email}"/>
+                                            <h:message for="email" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse 1</td>
+                                        <td>
+                                            <h:inputText id="street1" value="#{customerBean.street1}"/>
+                                            <h:message for="street1" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse 2</td>
+                                        <td>
+                                            <h:inputText id="street2" value="#{customerBean.street2}"/>
+                                            <h:message for="street2" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Code postal</td>
+                                        <td>
+                                            <h:inputText id="zipcode" value="#{customerBean.zipCode}"/>
+                                            <h:message for="zipcode" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ville</td>
+                                        <td>
+                                            <h:inputText id="city" value="#{customerBean.city}"/>
+                                            <h:message for="city" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pays</td>
+                                        <td>
+                                            <h:inputText id="country" value="#{customerBean.country}"/>
+                                            <h:message for="country" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Téléphone</td>
+                                        <td>
+                                            <h:inputText id="phone" value="#{customerBean.telephone}"/>
+                                            <h:message for="phone" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="text-center"> 
+                                            Veuillez choisir un mot de passe
+                                            <h:message for="password" class="error"/>
+                                            <h:message for="password2" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mot de passe</td>
+                                        <td>
+                                            <h:inputSecret id="password" value="#{customerBean.password}" validator="#{customerBean.validateSamePassword}">
+                                                <f:attribute name="confirm" value="#{confirm}" />
+                                            </h:inputSecret>                                        
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Confirmation</td>
+                                        <td>
+                                            <h:inputSecret id="password2" binding="#{confirm}">
+                                                
+                                            </h:inputSecret>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="text-center"> 
+                                            Veuillez choisir un type de client
+                                            <h:message for="type" class="error"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>
+                                            <h:selectOneRadio id="type" value="#{customerBean.type}">
+                                                <f:selectItem itemValue="1" itemLabel="Particulier" />
+                                                <f:selectItem itemValue="2" itemLabel="Professionel" />
+                                            </h:selectOneRadio>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                            <p class="text-center"><h:commandButton value="S'inscrire" class="button" action="#{customerBean.register()}" /></p>
+                        </h:form>
+                    </div>
+                </div>
+
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

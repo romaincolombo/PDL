@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author colombor
  */
 @Entity
+@NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,8 +28,9 @@ public class Customer implements Serializable {
     private String firstName;
     private String lastName;
     private String telephone;
+    
     private String email;
-    private String password;
+    private String passwordHash;
     private String street1;
     private String street2;
     private String city;
@@ -35,10 +38,22 @@ public class Customer implements Serializable {
     private String country;
 
 
+
+    
+    
     public Integer getType() {
         return type;
     }
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    
     public void setType(Integer type) {
         this.type = type;
     }
@@ -75,13 +90,6 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getStreet1() {
         return street1;
