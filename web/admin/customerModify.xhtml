@@ -5,16 +5,97 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un client</h3>
+                    
                     <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
-                    </table>
+                        <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Prénom" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.firstName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Nom" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.lastName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Numéro de téléphone" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.telephone}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Adresse e-mail" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.email}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Mot de passe" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.password}" /> <!-- On le garde ??? -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Adresse, ligne 1" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.street1}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Adresse, ligne 2" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.street2}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Ville" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.city}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Code postal" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.zipcode}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Pays" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{customerAdminBean.country}" />
+                                </td>
+                            </tr>
+                        </table>
+                        <h:commandButton class="button tiny " value="Modifier" />
                     </h:form>
                 </div>
             </ui:define>

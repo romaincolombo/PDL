@@ -5,16 +5,27 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier des nouveautés</h3>
+                    
+                    <!-- A AMELIORER -->
+                    
                     <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
-                    </table>
+                        <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Nom" />
+                                </td>
+                                <td>
+                                    <h:inputText value="#{newBooksAdminBean.title}" />
+                                </td>
+                            </tr>
+                        </table>
+                        <h:commandButton class="button tiny " value="Modifier" />
                     </h:form>
                 </div>
             </ui:define>

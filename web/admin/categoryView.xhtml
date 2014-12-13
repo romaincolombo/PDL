@@ -5,17 +5,32 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head> </h:head>
     <h:body>
-        <ui:composition template="WEB-INF/layout/layout.xhtml">
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-"></i> </h3>
-                    <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-bookmark-o"></i> Etat d'une rubrique</h3>
+                    
+                    <table style="margin-left: auto;margin-right:auto;">
+                        <tr>
+                            <td>
+                                <h:outputLabel value="Nom" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{categoryAdminBean.name}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel value="Description" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{categoryAdminBean.description}" />
+                            </td>
+                        </tr>
                     </table>
-                    </h:form>
+                    <h:commandButton class="button tiny " value="Modifier" />
                 </div>
             </ui:define>
             
