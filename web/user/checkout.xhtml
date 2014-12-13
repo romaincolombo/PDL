@@ -9,12 +9,54 @@
     <h:body>
         
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
-            
+            <f:metadata>
+        <f:viewParam name="id" value="#{orderBean.orderId}" />
+    </f:metadata>
             <ui:define name="content">         
                 <c:choose>
+                    
+                    
+                    <c:when test="#{orderBean.orderId eq 0}">
+                        Une erreur système est survenue pendant la commande. Veuillez réessayer ulterieurement.
+                        Cliquez ici pour réessayer
+                    </c:when>
+                    
+                    
+                    
+                    <c:when test="#{orderBean.orderId ne null}">
+                        Votre commande est terminée. Vous pouvez y accéder depuis votre espace personnel et y suivre son évolution. 
+                        Merci pour votre confiance et à très bientot.
+                        Accédez à votre commande.
+                    </c:when>
+                    
+                    
                     <c:when test="#{cartBean.numberOfItems eq 0}">Vous n'avez pas d'articles</c:when>
-                    <c:when test="#{not connectBean.connected}">Veuillez vous connecter</c:when>
-                    <c:otherwise>Checkout OK</c:otherwise>
+                    
+                    
+                    
+                    
+                    <c:otherwise>
+                        Checkout
+                        <h:form>
+                            <h:message for="ccType" class="error"/>
+                            <h:selectOneMenu id="ccType" value="#{orderBean.ccType}">
+                                <f:selectItem itemValue="visa" itemLabel="Visa" />
+                                <f:selectItem itemValue="mastercard" itemLabel="Master Card" />
+                                <f:selectItem itemValue="amex" itemLabel="American Express" />
+                            </h:selectOneMenu>
+                            <h:message for="ccNumber" class="error"/>
+                            <h:inputText id="ccNumber" value="#{orderBean.ccNumber}"/>
+                            <h:message for="ccExpiry" class="error"/>
+                            <h:inputText id="ccExpiry" value="#{orderBean.ccExpiry}" />
+                            <h:commandButton action="#{orderBean.confirm()}" value="Valider et commander"/>
+                        </h:form>
+                    
+                    
+                    
+                    </c:otherwise>
+                    
+                    
+                    
                 </c:choose>
             </ui:define>
 

@@ -107,6 +107,7 @@ public class InstallBean {
             cust_test1.setLastName("Colombo");
             cust_test1.setPasswordHash(PasswordHash.createHash("1234"));
             cust_test1.setEmail("a@b.com");
+            cust_test1.setType(2);
             em.persist(cust_test1);
             
             

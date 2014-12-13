@@ -139,6 +139,9 @@ public class CartBean {
         this.connectBean = connectBean;
     }
     
+    public void emptyCart() {
+        this.items.clear();
+    }
     
     
     /**
