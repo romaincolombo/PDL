@@ -75,7 +75,12 @@
                                         <tr><th>Titre</th><th>Prix</th><th>Quantité</th><th>Total</th><th>Actions</th></tr>
                                     </thead>
                                 </table>
-                                <p class="text-center"><button class="button small green"><i class="fa fa-credit-card"></i> Commander</button></p>
+                                <p class="text-center">
+                                    <h:form>
+                                        <h:commandButton class="button small green" action="#{cartBean.checkoutAction()}" value="Commander"/>
+                                    </h:form>
+                                    <!--<button class="button small green"><i class="fa fa-credit-card"></i> Commander</button>-->
+                                </p>
                             </c:otherwise>
                         </c:choose>
                     </div>

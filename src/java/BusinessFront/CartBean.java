@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -22,6 +23,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class CartBean {
+    @ManagedProperty(value="#{connectBean}")
+    ConnectBean connectBean;
+    
     @EJB
     private BookFacade bookFacade;
     
@@ -120,6 +124,22 @@ public class CartBean {
     public Set<Entry<Book,Integer>> getCart() {
         return items.entrySet();
     }
+    
+    public String checkoutAction() {
+        if(connectBean.isConnected()) {
+            return "/user/checkout?faces-redirect=true";
+        }
+        else {
+            connectBean.setRedirectToCheckout(true);
+            return "/connect?faces-redirect=true";
+        }
+    }
+
+    public void setConnectBean(ConnectBean connectBean) {
+        this.connectBean = connectBean;
+    }
+    
+    
     
     /**
      * Creates a new instance of CartBean

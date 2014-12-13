@@ -6,6 +6,7 @@
 package Facade;
 
 import Entity.Customer;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,4 +29,13 @@ public class CustomerFacade extends AbstractFacade<Customer> {
         super(Customer.class);
     }
     
+    public Customer findByEmail(Object email) {
+        List<Customer> list = em.createNamedQuery("Customer.findByEmail").setParameter("email", email).setMaxResults(1).getResultList();
+        if (list.isEmpty()) {
+            return null;
+        }
+        else {
+            return list.get(0);
+        }
+    }
 }
