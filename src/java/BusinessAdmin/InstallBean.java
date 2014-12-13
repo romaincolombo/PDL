@@ -66,6 +66,11 @@ public class InstallBean {
             cat_test1.setDescription("Ceci est la description de la categorie test 1");
             em.persist(cat_test1);
             
+            Category cat_test2 = new Category();
+            cat_test2.setName("Category Test 2");
+            cat_test2.setDescription("Ceci est la description de la categorie test 1");
+            em.persist(cat_test2);
+            
             Book book_test1 = new Book();
             book_test1.setCategory(cat_test1);
             book_test1.setTitle("Comment faire ses tests ?");
