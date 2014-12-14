@@ -94,6 +94,10 @@ public class AdminConnectBean {
         this.password = password;
     }
     
+    public Long getCountAdmin() {
+        return adminUserFacade.countAll();
+    }
+    
     
     /**
      * Creates a new instance of AdminConnectBean

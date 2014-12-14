@@ -58,6 +58,11 @@ public class InstallBean {
     public InstallBean() {
     }
     
+    public String install() {
+        getInstallDB();
+        return "/index?faces-redirect=true";
+    }
+    
     public String getInstallDB() {
         try {
             ut.begin();

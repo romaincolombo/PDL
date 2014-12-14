@@ -12,6 +12,13 @@
             
             <ui:define name="content">
                 <c:choose>
+                    <c:when test="#{adminConnectBean.countAdmin eq 0}">
+                        La base de donnée n'est pas installée<br/>
+                        Voulez-vous l'installer ?<br/><br/>
+                        <h:form>
+                            <h:commandButton action="#{installBean.install()}" value="Installer"/>
+                        </h:form>
+                    </c:when>
                     <c:when test="#{adminConnectBean.admin}">
                         Vous etes déjà connecté en tant qu'administrateur. <br/>
                         Souaitez-vous vous déconnecter ?<br/><br/>
