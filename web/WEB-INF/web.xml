@@ -39,6 +39,11 @@
             <description/>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>admin-connect</web-resource-name>
+            <description/>
+            <url-pattern>/connectAdmin.xhtml</url-pattern>
+        </web-resource-collection>
         <user-data-constraint>
             <description/>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>

@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author colombor
  */
 @Entity
+@NamedQuery(name = "AdminUser.findByLogin", query = "SELECT a FROM AdminUser a WHERE a.login = :login")
 public class AdminUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,7 +25,15 @@ public class AdminUser implements Serializable {
     private Long id;
     
     private String login;
-    private String password;
+    private String passwordHash;
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
     public String getLogin() {
         return login;
@@ -33,13 +43,7 @@ public class AdminUser implements Serializable {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     
     public Long getId() {

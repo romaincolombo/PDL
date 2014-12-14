@@ -11,71 +11,90 @@
         <ui:composition template="WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
-                <c:if test="#{connectBean.redirectToCheckout}" >
-                    <h5>Veuillez vous inscrire ou vous connecter pour continuer votre commande.</h5>
-                </c:if>
                 
-           <div class="row">
-                    <div class="large-6 columns" >
-                        <h3><i class="fa fa-sign-in"></i> Connexion</h3>
-                        <h:form id='form_connect'>
-                        <h:message for="email" class="error"/>
-                        
-                        <table style="margin-left:auto;margin-right:auto;">
-                            <tbody>
-                                    <tr>
-                                        <td>Login</td>
-                                        <td>
-                                            <h:inputText id="email" value="#{connectBean.email}" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mot de passe</td>
-                                        <td>
-                                            <h:inputSecret id="password" value="#{connectBean.password}" />
-                                        </td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                        
-                            <p class="text-center"><h:commandButton value="Envoyer" class="button" action="#{connectBean.connect()}"/></p>
-                        </h:form>
-                    </div>
-                    <div class="large-6 columns" >
-                        <h3><i class="fa fa-sign-in"></i> Inscription</h3>
+                <c:choose>
+                    <c:when test="#{connectBean.connected}">
+                        Vous etes déjà connecté. <br/>
+                        Souaitez-vous vous déconnecter ?<br/><br/>
                         <h:form>
-                        <table style="margin-left:auto;margin-right:auto;">
-                            <tbody>
-                                    <tr>
-                                        <td>Nom</td>
-                                        <td>
-                                            <h:inputText id="lastnameRegister" value="#{customerBean.lastName}" />
-                                            <h:message for="lastnameRegister" class="error"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prénom</td>
-                                        <td>
-                                            <h:inputText id="firstnameRegister" value="#{customerBean.firstName}" />
-                                            <h:message for="firstnameRegister" class="error"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail</td>
-                                        <td>
-                                            <h:inputText id="emailRegister" value="#{customerBean.email}"/>
-                                            <h:message for="emailRegister" class="error"/>
-                                        </td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                        
-                        <p class="text-center">
-                                    <h:commandButton value="S'inscrire" class="button" action="#{customerBean.preRegister()}"/>
-                        </p>
+                            <h:commandLink action="#{connectBean.disconnect()}" value="Se déconnecter"/>
                         </h:form>
-                    </div>
-                </div>
+                    </c:when>
+                    <c:otherwise>
+                        
+                        
+                        <c:if test="#{connectBean.redirectToCheckout}" >
+                            <h5>Veuillez vous inscrire ou vous connecter pour continuer votre commande.</h5>
+                        </c:if>
+
+                        <div class="row">
+                            <div class="large-6 columns" >
+                                <h3><i class="fa fa-sign-in"></i> Connexion</h3>
+                                <h:form id='form_connect'>
+                                <h:message for="email" class="error"/>
+
+                                <table style="margin-left:auto;margin-right:auto;">
+                                    <tbody>
+                                            <tr>
+                                                <td>E-mail</td>
+                                                <td>
+                                                    <h:inputText id="email" value="#{connectBean.email}" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mot de passe</td>
+                                                <td>
+                                                    <h:inputSecret id="password" value="#{connectBean.password}" />
+                                                </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+
+                                    <p class="text-center"><h:commandButton value="Envoyer" class="button" action="#{connectBean.connect()}"/></p>
+                                </h:form>
+                            </div>
+                            <div class="large-6 columns" >
+                                <h3><i class="fa fa-sign-in"></i> Inscription</h3>
+                                <h:form>
+                                <table style="margin-left:auto;margin-right:auto;">
+                                    <tbody>
+                                            <tr>
+                                                <td>Nom</td>
+                                                <td>
+                                                    <h:inputText id="lastnameRegister" value="#{customerBean.lastName}" />
+                                                    <h:message for="lastnameRegister" class="error"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Prénom</td>
+                                                <td>
+                                                    <h:inputText id="firstnameRegister" value="#{customerBean.firstName}" />
+                                                    <h:message for="firstnameRegister" class="error"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>E-mail</td>
+                                                <td>
+                                                    <h:inputText id="emailRegister" value="#{customerBean.email}"/>
+                                                    <h:message for="emailRegister" class="error"/>
+                                                </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+
+                                <p class="text-center">
+                                            <h:commandButton value="S'inscrire" class="button" action="#{customerBean.preRegister()}"/>
+                                </p>
+                                </h:form>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </c:otherwise>
+                </c:choose>
+
             </ui:define>
 
         </ui:composition>

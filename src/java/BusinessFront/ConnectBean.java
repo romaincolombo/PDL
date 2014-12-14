@@ -74,7 +74,7 @@ public class ConnectBean {
     public String disconnect() {
         customer = null;
         // To Do renew session saveCart
-        return null;
+        return "/index?faces-redirect=true";
     }
     
     public boolean isConnected() {
