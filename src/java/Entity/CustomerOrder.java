@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +26,7 @@ import javax.persistence.TemporalType;
  * @author colombor
  */
 @Entity
+@NamedQuery(name = "CustomerOrder.getAllByDate", query = "SELECT o FROM CustomerOrder o ORDER BY o.dateOrder DESC")
 public class CustomerOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
