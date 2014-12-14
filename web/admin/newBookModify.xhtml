@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head> </h:head>
+    <h:body>
+        
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{newBooksAdminBean.bookId}"/>
+                <f:event type="preRenderView" listener="#{newBooksAdminBean.initBook}"/>            
+            </f:metadata>
+        </f:view>
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content">
+                <ui:fragment rendered="#{newBooksAdminBean.okForEdit}">
+                    <div class="text-center">
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier des nouveautés</h3>
+                    </div>
+                    <h:form>
+                         <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Titre" />
+                                </td>
+                                <td>
+                                    <h:outputText value="#{newBooksAdminBean.currentBook.title}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Auteur" />
+                                </td>
+                                <td>
+                                    <h:outputText value="#{newBooksAdminBean.currentBook.author}"/>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                    <h:outputLabel value="Editeur" />
+                                </td>
+                                <td>
+                                    <h:outputText value="#{newBooksAdminBean.currentBook.publisher}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="ISBN" />
+                                </td>
+                                <td>
+                                    <h:outputText value="#{newBooksAdminBean.currentBook.isbn}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Nouveauté" />
+                                </td>
+                                <td>
+                                    <h:selectOneRadio value="#{newBooksAdminBean.newSelection}">
+                                        <f:selectItem itemValue="true" itemLabel="Oui" />
+                                        <f:selectItem itemValue="false" itemLabel="Non" />
+                                    </h:selectOneRadio>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h:commandButton class="button tiny " value="Modifier" action="#{newBooksAdminBean.save()}"/>
+
+                                    <h:link outcome="newBooksList" >
+                                            Annuler                              
+                                    </h:link>
+                                </td>
+       
+                            </tr>
+                         </table>
+                    </h:form>
+                </ui:fragment>
+
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

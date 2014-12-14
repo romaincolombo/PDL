@@ -101,7 +101,7 @@ public class InstallBean {
             book_test2.setStock(125);
             book_test2.setIsbn("978-2012010673");
             book_test2.setHardcover(512);
-            book_test2.setNewSelection(true);
+            book_test2.setNewSelection(false);
             book_test2.setImage("test.jpg");
             em.persist(book_test2);
             
