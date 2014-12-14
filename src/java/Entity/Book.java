@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -41,7 +42,10 @@ public class Book implements Serializable {
     private Category category;
     
     private String title;
+    
+    @Lob
     private String description;
+    
     private String author;
     private String publisher;
     

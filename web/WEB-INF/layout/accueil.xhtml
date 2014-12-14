@@ -5,48 +5,17 @@
 <h:body>
     <ui:composition>
  
- 	<h3 class="text-center"><i class="fa fa-star"></i> A l'affiche</h3>
-	<p>&nbsp;</p>
-	<ul class="small-block-grid-3 text-center">
-		<li>
-			<img class="petite-image" src="img/cover-angor.jpg" /><p>Angor</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-blake.jpg" /><p>Blake et Mortimer, tome 23 : le Baton de Plutarque</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-central.jpg" /><p>Central Park</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-demain-autre-jour.jpg" /><p>Demain est un autre jour</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-etoiles.jpg" /><p>Nos étoiles contraires</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-laby.jpg" /><p>L'épreuve : Le labyrinthe</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-largo.jpg" /><p>Largo Winch - tome 19 - Chassé-Croisé</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-portes.jpg" /><p>Le siècle, Tome 3 : Aux portes de l'éternité</p>
-		</li> 
-		<li>
-			<img class="petite-image" src="img/cover-saccage.jpg" /><p>Saccage ce carnet</p>
-		</li>
-            
-                <!--<c:forEach var="categorie" items="#{categoryBean.allCategories}">
-                        <li>
-                            <h:link outcome="/category">
-                                    <f:param name="id" value="#{categorie.id}" />
-                                    <h:outputText value="#{categorie.name}" />
-                                    <img class="petite-image" src="img/cover-saccage.jpg" />
-                                    <p>Saccage ce carnet</p>
-                            </h:link>
-                        </li>
-                </c:forEach>-->
-	</ul>
+ 	<h3 class="text-center"><i class="fa fa-magic"></i> C'est Noël !</h3>
+        <p class="text-center">Découvrez nos meilleures idées cadeaux !</p>
+        
+        <p class="text-center"><img src="#{facesContext.externalContext.requestContextPath}/img/idees-cadeau.jpg" /></p>
+        
+        
+ 	<h3 class="text-center"><i class="fa fa-thumbs-up"></i> Classiques</h3>
+        <p class="text-center">Retrouvez les livres qui ont fait cette année.</p>
+        
+        <p class="text-center"><img src="#{facesContext.externalContext.requestContextPath}/img/classiques.jpg" /></p>
+        
  
     </ui:composition>
 </h:body>
