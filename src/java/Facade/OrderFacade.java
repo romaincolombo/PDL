@@ -6,6 +6,7 @@
 package Facade;
 
 import Entity.CustomerOrder;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,10 @@ public class OrderFacade extends AbstractFacade<CustomerOrder> {
 
     public OrderFacade() {
         super(CustomerOrder.class);
+    }
+    
+    public List getAllByDate() {
+        return em.createNamedQuery("CustomerOrder.getAllByDate").getResultList();
     }
     
 }

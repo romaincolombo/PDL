@@ -107,13 +107,13 @@ public class OrderBean {
             OrderLine line = new OrderLine();
             line.setOrderLinePK(pk);
             line.setQuantity(quantity);
-            line.setUnitPrice(new BigDecimal(book.getPrice().doubleValue()*getDiscount()));
+            line.setUnitPrice(BigDecimal.valueOf(book.getPrice().doubleValue()*getDiscount()));
             em.persist(line);
         }
     }
     
     private BigDecimal getTotalPrice() {
-        return new BigDecimal(cartBean.getTotal()*getDiscount());
+        return BigDecimal.valueOf(cartBean.getTotal()*getDiscount());
     }
     
     private double getDiscount() {

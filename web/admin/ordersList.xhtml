@@ -12,24 +12,61 @@
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-credit-card"></i> Liste des rubriques</h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-credit-card"></i> Liste des commandes</h3>
                     
                     <table style="margin-left: auto;margin-right:auto;">
-                        <c:forEach var="order" items="#{orderAdminBean.allOrders}">
+                        <thead>
+                            <tr>
+                                <th>Etat</th>
+                                <th>Numéro</th>
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Prix</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="order" items="#{orderAdminBean.allOrderByDate}" >
+                            <c:choose>
+                                <c:when test="#{order.stateOrder == 3}">
+                                    <c:set var="bgcol" value="green"/>
+                                </c:when>
+                                <c:when test="#{order.stateOrder == 2}">
+                                    <c:set var="bgcol" value="orange"/>
+                                </c:when>
+                                <c:when test="#{order.stateOrder == 1}">
+                                    <c:set var="bgcol" value="red"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="bgcol" value="white"/>
+                                </c:otherwise>
+                            </c:choose>
                                 <tr>
+                                    <td style="background-color: #{bgcol};"></td>
+                                    <td>#<h:outputText value="#{order.id}"/></td>
                                     <td>
-                                        <h:link outcome="/category" >
-                                            <f:param name="id" value="#{order.id}" />
-                                            <h:outputText value="#{order.date}"/>
-                                        </h:link>
+                                        <h:outputText value="#{order.dateOrder}" >
+                                            <f:convertDateTime pattern="d-M-yyyy" />
+                                        </h:outputText>
                                     </td>
+                                    <td><h:outputText value="#{order.customer.lastName}" /></td>
+                                    <td><h:outputText value="#{order.totalPrice}">
+                                                <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                        </h:outputText></td>
+
                                     <td>
-                                        <h:form>
-                                            <h:commandButton class="button tiny " value="Modifier"/>
-                                        </h:form>
+                                        <h:link outcome="orderView" >
+                                            <div  class="button tiny ">
+
+                                                <f:param name="id" value="#{order.id}" />
+                                                Gérer                               
+
+                                            </div>
+                                        </h:link>
                                     </td>
                                 </tr>
                         </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </ui:define>

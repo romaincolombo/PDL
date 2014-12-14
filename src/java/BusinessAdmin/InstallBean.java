@@ -113,15 +113,45 @@ public class InstallBean {
             cust_test1.setPasswordHash(PasswordHash.createHash("1234"));
             cust_test1.setEmail("a@b.com");
             cust_test1.setType(2);
+            cust_test1.setCity("Paris");
+            cust_test1.setCountry("France");
+            cust_test1.setStreet1("1 rue blah blah");
+            cust_test1.setStreet2("Batiment C");
+            cust_test1.setZipCode("75011");
+            cust_test1.setTelephone("0123163822");
             em.persist(cust_test1);
             
             
             em.flush();
             
-            /*
+            
             CustomerOrder order_test1 = new CustomerOrder();
             order_test1.setCustomer(cust_test1);
+            order_test1.setDateOrder(new Date(78, 10, 1));
+            order_test1.setStateOrder(1);
+            order_test1.setTotalPrice(BigDecimal.valueOf(12.3));
             em.persist(order_test1);
+            
+            CustomerOrder order_test2 = new CustomerOrder();
+            order_test2.setCustomer(cust_test1);
+            order_test2.setDateOrder(new Date(54, 11, 2));
+            order_test2.setStateOrder(2);
+            order_test2.setTotalPrice(BigDecimal.valueOf(45.70));
+            em.persist(order_test2);
+            
+            CustomerOrder order_test3 = new CustomerOrder();
+            order_test3.setCustomer(cust_test1);
+            order_test3.setDateOrder(new Date(100, 3, 12));
+            order_test3.setStateOrder(3);
+            order_test3.setTotalPrice(BigDecimal.valueOf(125.70));
+            em.persist(order_test3);
+            
+            CustomerOrder order_test4 = new CustomerOrder();
+            order_test4.setCustomer(cust_test1);
+            order_test4.setDateOrder(new Date());
+            order_test4.setStateOrder(1);
+            order_test4.setTotalPrice(BigDecimal.valueOf(91.05));
+            em.persist(order_test4);
             
             em.flush();
             
@@ -129,7 +159,7 @@ public class InstallBean {
             orderline_test1.setOrderLinePK(new OrderLinePK(order_test1.getId(), book_test1.getId()));
             orderline_test1.setQuantity(123);
             em.persist(orderline_test1);
-            */
+            
 
             ut.commit();
 

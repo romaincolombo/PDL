@@ -2,68 +2,139 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+        
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{orderAdminBean.orderId}"/>
+                <f:event type="preRenderView" listener="#{orderAdminBean.initOrder}"/>            
+            </f:metadata>
+        </f:view>
+        
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
-
-                <div class="text-center">
-                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-credit-card"></i> Etat d'une commande</h3>
+                <ui:fragment rendered="#{orderAdminBean.okForEditView}">
+                    <div class="text-center">
+                        <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-credit-card"></i> Etat d'une commande</h3>
+                    </div>
+                    <h:link outcome="ordersList" >
+                                        Retour <br/>                           
+                    </h:link>
+                    <div class="row" >
+                        <div class="small-4 columns" >
+                            <table>
+                                <tr>
+                                    <td colspan="3"><h5>Récapitulatif</h5></td>
+                                </tr>
+                                <tr>
+                                    <td>Numéro</td>
+                                    <td colspan="2">
+                                        <h:outputText value="#{orderAdminBean.currentOrder.id}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Date</td>
+                                    <td colspan="2">
+                                        <h:outputText value="#{orderAdminBean.currentOrder.dateOrder}" >
+                                            <f:convertDateTime />
+                                        </h:outputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Montant</td>
+                                    <td colspan="2">
+                                        <h:outputText value="#{orderAdminBean.currentOrder.totalPrice}">
+                                                <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                        </h:outputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Etat</td>
+                                    <td style="background-color: #{orderAdminBean.orderStateColor}"></td>
+                                    <td>
+                                        <h:outputText value="#{orderAdminBean.orderStateText}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <h:link outcome="orderModify" >
+                                            <div  class="button tiny">
+                                                <f:param name="id" value="#{orderAdminBean.orderId}" />
+                                                Modifier état                              
+                                            </div>
+                                        </h:link></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-5 columns" >
+                            <table>
+                                <tr>
+                                    <td colspan="2"><h5>Livraison</h5></td>
+                                </tr>
+                                <tr>
+                                    <td>Adresse</td>
+                                    <td>
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.firstName} " /> 
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.lastName} " /> 
+                                        <br/>
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.street1}" />
+                                        <br/>
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.street2}" />
+                                        <br/>
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.zipCode} " />
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.city}" />
+                                        <br/>
+                                        <h:outputText value="#{orderAdminBean.currentOrder.customer.country} " />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Téléphone</td>
+                                    <td><h:outputText value="#{orderAdminBean.currentOrder.customer.telephone}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><h:outputText value="#{orderAdminBean.currentOrder.customer.email}" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4>Produits</h4>
+                        <table style="margin-left:auto;margin-right:auto;">
+                                    <tbody>
+                                        <ui:repeat var="item" value="#{orderAdminBean.currentOrderLines}">
+ 
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="#{item.book.title}" /><br/>
+                                                    (<h:outputText value="#{item.book.author}" />)<br/>
+                                                    [<h:outputText value="#{item.book.publisher}" /> <h:outputText value="#{item.book.dateBook}" >
+                                                        <f:convertDateTime pattern="yyyy" />
+                                                    </h:outputText>]
+                                                </td>
+                                   
+                                                <td><h:outputText value="#{item.quantity}" /></td>
+                                                <td>
+                                                    <h:outputText value="#{item.unitPrice}">
+                                                       <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                    </h:outputText>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+           
+                                    </tbody>
+                                    <thead>
+                                        <tr><th>Livre</th><th>Quantité</th><th>Prix unitaire</th></tr>
+                                    </thead>
+                                </table>
+                    </div>
                     
-                    <table style="margin-left: auto;margin-right:auto;">
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Date" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.date}" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Etat" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.state}" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Montant total" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.totalPrice}" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Numéro de la carte de crédit" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.ccNumber}" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Type de la carte" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.ccType}" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:outputLabel value="Date d'expiration de la carte" />
-                            </td>
-                            <td>
-                                <h:outputText value="#{orderAdminBean.ccExpiry}" />
-                            </td>
-                        </tr>
-                    </table>
-                    <h:commandButton class="button tiny " value="Modifier" />
-                </div>
+                </ui:fragment>
+                
             </ui:define>
             
         </ui:composition>
