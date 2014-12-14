@@ -18,11 +18,14 @@
                     <br/><br/>
                     Bonjour <h:outputText value="#{connectBean.customer.firstName}"/>, bienvenue sur votre espace personnel.<br/><br/>
                     <ul>
-                        <li>Modifier les information de mon compte</li>
+                        <li><h:link outcome="myAccountView">Modifier les information de mon compte</h:link></li>
                         <li><h:link outcome="myAccountOrdersList">Visualiser l'état de mes commandes</h:link></li>
                     </ul>
-                    
-                    
+                    <h:form>
+                    <ul>
+                        <li><h:commandLink action="#{connectBean.disconnect()}" value="Se déconnecter"/></li>
+                    </ul>
+                    </h:form>
                 </div>
 
 

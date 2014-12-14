@@ -14,7 +14,7 @@
 		<img src="#{facesContext.externalContext.requestContextPath}/img/hautban.png" />
 	  </div>
 	</div>
-	
+	<h:form>
 	<div class="row">
 	  <div class="large-12 columns">
                 <!-- data-topbar  -->
@@ -43,10 +43,9 @@
                             <li><h:link outcome="/newBooks"><i class="fa fa-bullhorn"></i> Nouveautés</h:link></li>
                         </ul>
                         <ul class="right">
-                            <c:choose>
-                                <c:when test="#{connectBean.connected}">
-                                    <li class="has-dropdown"> 
-                                        <h:link ><i class="fa fa-user"></i> Administration</h:link>
+                            <c:if test="#{adminConnectBean.admin}">
+                                <li class="has-dropdown"> 
+                                        <h:link outcome="/admin/adminIndex"><i class="fa fa-user"></i> Administration</h:link>
                                         <ul class="dropdown">
                                             <li class="has-dropdown"><h:link >Gestion du catalogue</h:link>
                                                     <ul class="dropdown">
@@ -57,32 +56,37 @@
                                             </li>
                                             <li><h:link outcome="/admin/ordersList">Gestion des commandes</h:link></li>
                                             <li><h:link outcome="/admin/customerList">Gestion des clients</h:link></li>
+                                            <li><h:commandLink action="#{adminConnectBean.disconnect()}" value="Se déconnecter (admin)"/></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <h:link outcome="/cart">
-                                            <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
-                                        </h:link>
-                                    </li>
+                            </c:if>
+                            <li>
+                                    <h:link outcome="/cart">
+                                        <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
+                                    </h:link>
+                            </li>
+                            <c:choose>
+                                <c:when test="#{connectBean.connected}">
+
                                     <li class="has-dropdown"> 
-                                        <h:link ><i class="fa fa-user"></i> Mon Compte</h:link>
+                                        <h:link outcome="/user/myAccountIndex"><i class="fa fa-user"></i> Mon Compte</h:link>
                                         <ul class="dropdown">
-                                                <li><h:link outcome="/myAccountView">Mes informations personnelles</h:link></li>
-                                                <li><h:link outcome="/user/checkout">Mes commandes</h:link></li>
+                                                <li><h:link outcome="/user/myAccountView">Mes informations personnelles</h:link></li>
+                                                <li><h:link outcome="/user/myAccountOrdersList">Mes commandes</h:link></li>
+                                                <li><h:commandLink action="#{connectBean.disconnect()}" value="Se déconnecter"/></li>
                                         </ul>
                                     </li>
                                 </c:when>
-                                <c:when test="#{!connectBean.connected}">
-                                    <li><h:link outcome="/connect"><i class="fa fa-plug"></i> S'authentifier</h:link></li>
-                                    <li><h:link outcome="/register"><i class="fa fa-edit"></i> S'inscrire</h:link></li>
-                                </c:when>
+                                <c:otherwise>
+                                    <li><h:link outcome="/connect"><i class="fa fa-edit"></i> Se connecter / S'inscrire</h:link></li>
+                                </c:otherwise>
                             </c:choose>
                         </ul>
                     </section>
                 </nav>
 	  </div>
 	</div>
-	
+	</h:form>
 	<div class="row">
 	  <div class="large-12 columns text-center" id="conteneur-recherche">
             <h:form>

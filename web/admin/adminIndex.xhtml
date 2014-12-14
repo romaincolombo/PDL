@@ -22,6 +22,11 @@
                     <li><h:link outcome="ordersList">Gestion des commandes</h:link></li>
                     <li>Gestion des clients</li>
                 </ul>
+                <h:form>
+                    <ul>
+                        <li><h:commandLink action="#{adminConnectBean.disconnect()}" value="Se déconnecter"/></li>
+                    </ul>
+                </h:form>
             </ui:define>
             
         </ui:composition>
