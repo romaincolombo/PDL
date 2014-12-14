@@ -11,12 +11,14 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author colombor
  */
 @Entity
+@NamedQuery(name = "OrderLine.findByOrder", query = "SELECT ol FROM OrderLine ol WHERE ol.order = :order")
 public class OrderLine implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

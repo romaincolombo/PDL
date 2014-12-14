@@ -21,6 +21,9 @@
                     <div class="text-center">
                         <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-credit-card"></i> Etat d'une commande</h3>
                     </div>
+                    <h:link outcome="ordersList" >
+                                        Retour <br/>                           
+                    </h:link>
                     <div class="row" >
                         <div class="small-4 columns" >
                             <table>
@@ -100,10 +103,10 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <h4>Produits #{orderAdminBean.currentOrder.orderLines.size()}</h4>
+                        <h4>Produits</h4>
                         <table style="margin-left:auto;margin-right:auto;">
                                     <tbody>
-                                        <ui:repeat var="item" value="#{orderAdminBean.currentOrder.orderLines}">
+                                        <ui:repeat var="item" value="#{orderAdminBean.currentOrderLines}">
  
                                             <tr>
                                                 <td>

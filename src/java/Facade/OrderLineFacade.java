@@ -6,6 +6,7 @@
 package Facade;
 
 import Entity.OrderLine;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,10 @@ public class OrderLineFacade extends AbstractFacade<OrderLine> {
 
     public OrderLineFacade() {
         super(OrderLine.class);
+    }
+    
+    public List findByOrder(Object order) {
+        return em.createNamedQuery("OrderLine.findByOrder").setParameter("order", order).getResultList();
     }
     
 }

@@ -6,7 +6,10 @@
 package BusinessAdmin;
 
 import Entity.CustomerOrder;
+import Entity.OrderLine;
+import Facade.BookFacade;
 import Facade.OrderFacade;
+import Facade.OrderLineFacade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +24,13 @@ import javax.faces.event.ComponentSystemEvent;
 @ViewScoped
 public class OrderAdminBean {
     @EJB
+    private BookFacade bookFacade;
+    @EJB
+    private OrderLineFacade orderLineFacade;
+    @EJB
     private OrderFacade orderFacade;
+    
+    
     
     private Long orderId;
     private CustomerOrder currentOrder;
@@ -40,6 +49,12 @@ public class OrderAdminBean {
                 okForEditView = false;
             }
         }
+    }
+    
+    public String saveOrderState() {
+        currentOrder.setStateOrder(stateOrder);
+        orderFacade.edit(currentOrder);
+        return "orderView?faces-redirect=true&includeViewParams=true";
     }
     
     public String getOrderStateText() {
@@ -73,6 +88,13 @@ public class OrderAdminBean {
     }
     public List<CustomerOrder> getAllOrderByDate() {
         return orderFacade.getAllByDate();
+    }
+    public List<OrderLine> getCurrentOrderLines() {
+        List<OrderLine> list = orderLineFacade.findByOrder(currentOrder);
+        for(OrderLine line: list) {
+            line.setBook(bookFacade.find(line.getOrderLinePK().getBookId()));
+        }
+        return list;
     }
 
     public Long getOrderId() {

@@ -26,9 +26,9 @@ public class OrderLinePK implements Serializable {
     @Column(name = "book_id")
     private Long bookId;
 
-    public OrderLinePK(Long orderId, Long productId) {
+    public OrderLinePK(Long orderId, Long bookId) {
         this.orderId = orderId;
-        this.bookId = productId;
+        this.bookId = bookId;
     }
 
     public OrderLinePK() {
@@ -42,12 +42,12 @@ public class OrderLinePK implements Serializable {
         this.orderId = orderId;
     }
 
-    public Long getProductId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setProductId(Long productId) {
-        this.bookId = productId;
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
     
     @Override
