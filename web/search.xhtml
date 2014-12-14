@@ -2,21 +2,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+             <f:view>
+                <f:metadata>
+                    <f:viewParam name="req" value="#{bookBean.searchText}"/>
+                </f:metadata>
+            </f:view>
         <ui:composition template="WEB-INF/layout/layout.xhtml">
-            
+       
             <ui:define name="content">
 
                 <div class="text-center">
                     <h3><i class="fa fa-search"></i> Recherche</h3>
-                    <h:form>
-                    <table style="margin-left:auto;margin-right:auto;">
-                        
-                    </table>
-                    </h:form>
+                    <h5>Résultats de la recherche : <small><h:outputText value="#{bookBean.searchText}"/></small></h5><br/><br/>
                 </div>
+                <c:set var="count" value="0"/>
+                    <c:forEach items="#{bookBean.searchResults}" var="book">
+                        <c:set var="count" value="1"/>
+                        <div class="row">
+                            <div class="small-2 columns">
+                                <h:link outcome="/book" >
+                                        <f:param name="id" value="#{book.id}" />
+                                        <img style="width:70%" src="#{facesContext.externalContext.requestContextPath}/img/books/#{book.image}"/>
+                                </h:link>
+                            </div>
+                            <div class="small-10 columns">
+                                <h3>
+                                    <h:link outcome="/book" >
+                                        <f:param name="id" value="#{book.id}" />
+                                        <h:outputText value="#{book.title}"/>
+                                    </h:link>
+                                </h3>
+                                <h:outputText value="#{book.author}" />
+                            </div>
+                        </div>
+                        <hr/>
+                    </c:forEach>
+                <c:if test="#{count eq 0}">
+                    <div class="text-center">Désolé, nous n'avons pas trouvé de résultat correspondant à votre recherche.</div>               
+                </c:if>
+                   
+                
             </ui:define>
             
         </ui:composition>

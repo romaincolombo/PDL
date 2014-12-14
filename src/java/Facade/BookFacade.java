@@ -34,4 +34,7 @@ public class BookFacade extends AbstractFacade<Book> {
         return em.createNamedQuery("Book.findByCategory").setParameter("category", category).getResultList();
     }
     
+    public List searchByTitleOrAuthor(String search) {
+        return em.createNamedQuery("Book.searchByTitleOrAuthor").setParameter("search", "%"+search.toLowerCase()+"%").getResultList();
+    }
 }
