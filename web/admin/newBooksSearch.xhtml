@@ -7,6 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+        
+        <f:view>
+                <f:metadata>
+                    <f:viewParam name="req" value="#{newBooksAdminBean.searchText}"/>
+                </f:metadata>
+        </f:view>
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
@@ -27,12 +33,17 @@
                                      <h:commandButton value="Rechercher" action="#{newBooksAdminBean.findBook()}" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <h:link outcome="newBooksList" >Retour vers la liste des nouveautés</h:link>
+                                </td>
+                            </tr>
                         </table>
                     </h:form>
                         
                          <table style="margin-left:auto;margin-right:auto;">
                             <tbody>
-                                <c:forEach var="book" items="#{newBooksAdminBean.allNewBooks}">
+                                <c:forEach var="book" items="#{newBooksAdminBean.searchResults}">
                                     <tr>
                                         <td>
                                             <h:outputText value="#{book.title}" /><br/>

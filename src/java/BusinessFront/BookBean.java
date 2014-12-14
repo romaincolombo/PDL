@@ -39,6 +39,8 @@ public class BookBean {
    }
    
 
+   
+
     public Long getBookId() {
         return bookId;
     }
@@ -62,6 +64,11 @@ public class BookBean {
     public List<Book> getSearchResults() {
         List<Book> searchResults = bookFacade.searchByTitleOrAuthor(searchText);
         return searchResults;
+    }
+    
+    public List<Book> getNewBooks() {
+        List<Book> newBooks = bookFacade.getNewBooks();
+        return newBooks;
     }
     
     public boolean isBookExists() {

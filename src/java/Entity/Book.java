@@ -26,7 +26,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category"),
-    @NamedQuery(name = "Book.searchByTitleOrAuthor", query = "SELECT b FROM Book b WHERE LOWER(b.title) LIKE :search OR LOWER(b.author) LIKE :search")
+    @NamedQuery(name = "Book.searchByTitleOrAuthor", query = "SELECT b FROM Book b WHERE LOWER(b.title) LIKE :search OR LOWER(b.author) LIKE :search"),
+    @NamedQuery(name = "Book.getNewBooks", query = "SELECT b FROM Book b WHERE b.newSelection = true")
 })
 
 public class Book implements Serializable {
