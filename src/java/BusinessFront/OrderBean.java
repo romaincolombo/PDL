@@ -116,7 +116,7 @@ public class OrderBean {
         return BigDecimal.valueOf(cartBean.getTotal()*getDiscount());
     }
     
-    private double getDiscount() {
+    public double getDiscount() {
         if(connectBean.getCustomer().getType() == 2) {
             return 0.8;
         }

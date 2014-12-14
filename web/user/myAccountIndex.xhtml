@@ -11,10 +11,19 @@
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">         
-
-                        Mon Compte
+                <div class="row" >
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-user"></i> Mon Compte</h3>
+                    </div>
+                    <br/><br/>
+                    Bonjour <h:outputText value="#{connectBean.customer.firstName}"/>, bienvenue sur votre espace personnel.<br/><br/>
+                    <ul>
+                        <li>Modifier les information de mon compte</li>
+                        <li><h:link outcome="myAccountOrdersList">Visualiser l'état de mes commandes</h:link></li>
+                    </ul>
                     
                     
+                </div>
 
 
             </ui:define>

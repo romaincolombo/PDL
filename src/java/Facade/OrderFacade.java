@@ -33,4 +33,8 @@ public class OrderFacade extends AbstractFacade<CustomerOrder> {
         return em.createNamedQuery("CustomerOrder.getAllByDate").getResultList();
     }
     
+    public List getOrdersByCustomer(Object customer) {
+        return em.createNamedQuery("CustomerOrder.getOrdersByCustomer").setParameter("customer", customer).getResultList();
+    }
+    
 }
