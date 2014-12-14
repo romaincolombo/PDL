@@ -20,13 +20,18 @@
                                     <td>
                                         <h:link outcome="/category" >
                                             <f:param name="id" value="#{customer.id}" />
-                                            <h:outputText value="#{customer.firstName}"/> <h:outputText value="#{customer.lastName}"/>
+                                            <h:outputText value="#{customer.firstName}"/>&nbsp;<h:outputText value="#{customer.lastName}"/>
                                         </h:link>
                                     </td>
                                     <td>
-                                        <h:form>
-                                            <h:commandButton class="button tiny " value="Modifier"/>
-                                        </h:form>
+                                        <h:link outcome="customerView" >
+                                            <div  class="button tiny ">
+
+                                                <f:param name="id" value="#{customer.id}" />
+                                                Voir/Modifier                                
+
+                                            </div>
+                                        </h:link>
                                     </td>
                                 </tr>
                         </c:forEach>

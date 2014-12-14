@@ -55,15 +55,15 @@
                                                     </ul>
                                             </li>
                                             <li><h:link outcome="/admin/ordersList">Gestion des commandes</h:link></li>
-                                            <li><h:link outcome="/admin/customerList">Gestion des clients</h:link></li>
+                                            <li><h:link outcome="/admin/customersList">Gestion des clients</h:link></li>
                                             <li><h:commandLink action="#{adminConnectBean.disconnect()}" value="Se déconnecter (admin)"/></li>
                                         </ul>
                                     </li>
                             </c:if>
                             <li>
-                                    <h:link outcome="/cart">
-                                        <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
-                                    </h:link>
+                                <h:link outcome="/cart">
+                                    <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
+                                </h:link>
                             </li>
                             <c:choose>
                                 <c:when test="#{connectBean.connected}">

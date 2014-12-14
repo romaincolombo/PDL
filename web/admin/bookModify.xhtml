@@ -2,110 +2,156 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookAdminBean.bookId}"/>
+                <f:event type="preRenderView" listener="#{bookAdminBean.initBook}"/>            
+            </f:metadata>
+        </f:view>
+        
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
 
-                <div class="text-center">
-                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un livre</h3>
-                    
-                    <h:form>
-                        <table style="margin-left: auto;margin-right:auto;">
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Titre" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.title}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Description" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.description}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Auteur" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.author}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Editeur" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.publisher}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Date" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.date}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Prix" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.price}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Langage" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.language}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Nombre en stock" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.stock}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Note" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.rating}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Numéro ISBN" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.isbn}" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:outputLabel value="Nombre de pages" />
-                                </td>
-                                <td>
-                                    <h:inputText value="#{bookAdminBean.hardcover}" />
-                                </td>
-                            </tr>
-                        </table>
-                        <h:commandButton class="button tiny " value="Modifier" />
-                    </h:form>
-                </div>
+                <ui:fragment rendered="#{bookAdminBean.okForEdit}">
+                    <div class="text-center">
+                        <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un livre
+                        <ui:fragment rendered="#{bookAdminBean.bookId ne 0}">Modifier un livre</ui:fragment>
+                        <ui:fragment rendered="#{bookAdminBean.bookId eq 0}">Créer un livre</ui:fragment>
+                        </h3>
+
+                        <h:form id="form">
+                            <h:messages />
+                            <h:inputHidden id="errorMessage" />
+                            <h:message for="errorMessage" class="error" />
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Titre" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.title}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Description" />
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea value="#{bookAdminBean.description}" cols="50" rows="10" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Auteur" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.author}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Editeur" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.publisher}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Date" /> (Format dd/MM/yyyy)
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.date}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Prix" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.price}" > (Format XXX,XX €)
+                                            <f:convertNumber currencySymbol="&euro;" locale="fr_FR" type="currency"/>
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Langage" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.language}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Nombre en stock" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.stock}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Note" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.rating}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Numéro ISBN" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.isbn}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Nombre de pages" />
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{bookAdminBean.hardcover}" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <ui:fragment rendered="#{bookAdminBean.bookId ne 0}">
+
+                                <h:commandButton class="button tiny " value="Modifier" action="#{bookAdminBean.save()}"/>
+
+                                <h:link outcome="categoryView" >
+                                        <f:param name="id" value="#{bookAdminBean.bookId}" />
+                                        Retour                                
+                                </h:link>
+                                
+                            </ui:fragment>
+
+                            <ui:fragment rendered="#{bookAdminBean.bookId eq 0}">
+
+                                <h:commandButton class="button tiny " value="Ajouter" action="#{bookAdminBean.create()}"/>
+
+                                <h:link outcome="categoriesList" >
+                                        Annuler                              
+                                </h:link>
+                                
+                            </ui:fragment>
+
+                        </h:form>
+                            <ui:fragment rendered="#{bookAdminBean.bookId ne 0}">
+                               <h:form> 
+                                    <h:commandButton class="button tiny alert" value="Supprimer" action="#{bookAdminBean.delete()}"
+                                                 onclick="return confirm('Voulez-vous vraiment supprimer cet élément?');"/>
+                                </h:form>
+                            </ui:fragment>
+                    </div>
+                </ui:fragment>
             </ui:define>
             
         </ui:composition>

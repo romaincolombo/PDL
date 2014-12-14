@@ -25,9 +25,14 @@
                                         </h:link>
                                     </td>
                                     <td>
-                                        <h:form>
-                                            <h:commandButton class="button tiny " value="Modifier"/>
-                                        </h:form>
+                                        <h:link outcome="bookView" >
+                                            <div  class="button tiny ">
+
+                                                <f:param name="id" value="#{book.id}" />
+                                                Voir/Modifier                                
+
+                                            </div>
+                                        </h:link>
                                     </td>
                                 </tr>
                         </c:forEach>

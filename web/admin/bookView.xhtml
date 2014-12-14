@@ -2,9 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+        
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookAdminBean.bookId}"/>
+                <f:event type="preRenderView" listener="#{bookAdminBean.initBook}"/>            
+            </f:metadata>
+        </f:view>
+        
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
@@ -26,7 +35,16 @@
                                 <h:outputLabel value="Description" />
                             </td>
                             <td>
-                                <h:outputText value="#{bookAdminBean.description}" />
+                                <div style="max-width:350px;"><h:outputText value="#{bookAdminBean.description}" /></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel value="Image" />
+                            </td>
+                            <td>
+                                <!-- On utilise la balise <a> car la <h:link> ne fonctionne pas ici -->
+                                <a href="#{facesContext.externalContext.requestContextPath}/img/books/#{bookAdminBean.image}"><h:outputText value="#{bookAdminBean.image}" /></a>
                             </td>
                         </tr>
                         <tr>
@@ -50,7 +68,9 @@
                                 <h:outputLabel value="Date" />
                             </td>
                             <td>
-                                <h:outputText value="#{bookAdminBean.date}" />
+                                <h:outputText value="#{bookAdminBean.date}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +78,9 @@
                                 <h:outputLabel value="Prix" />
                             </td>
                             <td>
-                                <h:outputText value="#{bookAdminBean.price}" />
+                                <h:outputText value="#{bookAdminBean.price}" >
+                                    <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                </h:outputText>
                             </td>
                         </tr>
                         <tr>
@@ -82,7 +104,7 @@
                                 <h:outputLabel value="Note" />
                             </td>
                             <td>
-                                <h:outputText value="#{bookAdminBean.rating}" />
+                                <h:outputText value="#{bookAdminBean.rating}" />/10
                             </td>
                         </tr>
                         <tr>
@@ -98,11 +120,21 @@
                                 <h:outputLabel value="Nombre de pages" />
                             </td>
                             <td>
-                                <h:outputText value="#{bookAdminBean.hardcover}" />
+                                <h:outputText value="#{bookAdminBean.hardcover}" /> pages
                             </td>
                         </tr>
                     </table>
-                    <h:commandButton class="button tiny " value="Modifier" />
+                    <h:link outcome="bookModify" >
+                        <div  class="button tiny ">
+                            <f:param name="id" value="#{bookAdminBean.bookId}" />
+                            Modifier                                
+                        </div>
+                    </h:link>
+                    <h:link outcome="booksList" >
+
+                            Retour                               
+
+                    </h:link>
                 </div>
             </ui:define>
             
