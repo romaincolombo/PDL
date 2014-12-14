@@ -43,39 +43,40 @@
                             <li><h:link outcome="/newBooks"><i class="fa fa-bullhorn"></i> Nouveautés</h:link></li>
                         </ul>
                         <ul class="right">
-                            <li class="has-dropdown"> 
-                                <h:link ><i class="fa fa-user"></i> Administration</h:link>
-                                <ul class="dropdown">
-                                    <li class="has-dropdown"><h:link >Gestion du catalogue</h:link>
-                                            <ul class="dropdown">
-                                                    <li>
-                                                        <h:link >
-                                                            Gestion des rubriques
-                                                        </h:link>
-                                                    </li>
-                                                    <li><h:link >Gestion des livres</h:link></li>
-                                                    <li><h:link >Gestion des nouveautés</h:link></li>
-                                            </ul>
+                            <c:choose>
+                                <c:when test="#{connectBean.connected}">
+                                    <li class="has-dropdown"> 
+                                        <h:link ><i class="fa fa-user"></i> Administration</h:link>
+                                        <ul class="dropdown">
+                                            <li class="has-dropdown"><h:link >Gestion du catalogue</h:link>
+                                                    <ul class="dropdown">
+                                                            <li><h:link outcome="/admin/categoriesList">Gestion des rubriques</h:link></li>
+                                                            <li><h:link outcome="/admin/booksList">Gestion des livres</h:link></li>
+                                                            <li><h:link outcome="/admin/newBooksList">Gestion des nouveautés</h:link></li>
+                                                    </ul>
+                                            </li>
+                                            <li><h:link outcome="/admin/ordersList">Gestion des commandes</h:link></li>
+                                            <li><h:link outcome="/admin/customerList">Gestion des clients</h:link></li>
+                                        </ul>
                                     </li>
-                                    <li><h:link >Gestion des commandes</h:link></li>
-                                    <li><h:link >Gestion des clients</h:link></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h:link outcome="/cart">
-                                    <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
-                                </h:link>
-                            </li>
-                            <li class="has-dropdown"> 
-                                    <h:link ><i class="fa fa-user"></i> Mon Compte</h:link>
-                                    <ul class="dropdown">
-                                            <li><h:link >Mes informations personnelles</h:link></li>
-                                            <li><h:link >Mes commandes</h:link></li>
-                                    </ul>
-                            </li>
-                            <!--
-                            <li><h:link ><i class="fa fa-plug"></i> S'authentifier</h:link></li>
-                            <li><h:link ><i class="fa fa-edit"></i> S'inscrire</h:link></li>-->
+                                    <li>
+                                        <h:link outcome="/cart">
+                                            <i class="fa fa-shopping-cart"></i> Mon Panier (<h:outputText value="#{cartBean.numberOfItems}"/>)
+                                        </h:link>
+                                    </li>
+                                    <li class="has-dropdown"> 
+                                        <h:link ><i class="fa fa-user"></i> Mon Compte</h:link>
+                                        <ul class="dropdown">
+                                                <li><h:link outcome="/myAccountView">Mes informations personnelles</h:link></li>
+                                                <li><h:link outcome="/user/checkout">Mes commandes</h:link></li>
+                                        </ul>
+                                    </li>
+                                </c:when>
+                                <c:when test="#{!connectBean.connected}">
+                                    <li><h:link outcome="/connect"><i class="fa fa-plug"></i> S'authentifier</h:link></li>
+                                    <li><h:link outcome="/register"><i class="fa fa-edit"></i> S'inscrire</h:link></li>
+                                </c:when>
+                            </c:choose>
                         </ul>
                     </section>
                 </nav>

@@ -18,7 +18,8 @@
             
             <ui:define name="content">
                 <ui:fragment rendered="#{categoryBean.categoryExists}">
-                    <h1><h:outputText value="#{categoryBean.currentCategory.name}"/></h1><br/>
+                    <h1><h:outputText value="#{categoryBean.currentCategory.name}"/></h1>
+                    <p><h:outputText value="#{categoryBean.currentCategory.description}"/></p>
                     <ui:repeat var="book" value="#{categoryBean.currentCategoryBooks}">
                     <!--<c:forEach var="book" items="#{categoryBean.currentCategoryBooks}">-->
                         <div class="row">
