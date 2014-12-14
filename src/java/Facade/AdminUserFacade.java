@@ -39,4 +39,8 @@ public class AdminUserFacade extends AbstractFacade<AdminUser> {
         }
     }
     
+    public Long countAll() {
+        return (Long) em.createNamedQuery("AdminUser.countAll").getSingleResult();
+    }
+    
 }
