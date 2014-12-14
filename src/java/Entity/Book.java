@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +24,11 @@ import javax.persistence.TemporalType;
  * @author colombor
  */
 @Entity
-@NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category")
+@NamedQueries({
+    @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category"),
+    @NamedQuery(name = "Book.searchByTitleOrAuthor", query = "SELECT b FROM Book b WHERE LOWER(b.title) LIKE :search OR LOWER(b.author) LIKE :search")
+})
+
 public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -86,8 +86,8 @@
 	  <div class="large-12 columns text-center" id="conteneur-recherche">
             <h:form>
                 <i class="fa fa-search"></i> Recherche 
-                <h:inputText id="search" style=" width:60%; display:inline; margin-left:5px; margin-right:5px;" />
-                <h:commandButton class="button secondary small" value="Rechercher" style="padding:10px;" action="search" />
+                <h:inputText id="search" value="#{bookBean.searchText}" style=" width:60%; display:inline; margin-left:5px; margin-right:5px;" />
+                <h:commandButton class="button secondary small" value="Rechercher" style="padding:10px;" action="#{bookBean.findBook()}" />
             </h:form>
 	  </div>
 	</div>

@@ -28,7 +28,6 @@ public class BookBean {
     Book currentBook;
     
     String searchText;
-    List<Book> searchResults;
 
    public void initBook(ComponentSystemEvent event) {
         if (bookId != null)
@@ -36,9 +35,9 @@ public class BookBean {
    }
    
    public String findBook() {
-       //TODO: Search !
-       return "search.xhtml";
+       return "/search?faces-redirect=true&includeViewParams=true";
    }
+   
 
     public Long getBookId() {
         return bookId;
@@ -61,6 +60,7 @@ public class BookBean {
     }
 
     public List<Book> getSearchResults() {
+        List<Book> searchResults = bookFacade.searchByTitleOrAuthor(searchText);
         return searchResults;
     }
     
