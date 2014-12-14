@@ -11,8 +11,49 @@
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">         
-
-                        Mon Compte
+                <div class="row" >
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-user"></i> Mon Compte > Mes commandes</h3>
+                    </div>
+                    
+                    <table style="margin-left: auto;margin-right:auto;">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Etat</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:set var="nbOrder" value="0"/>
+                            <c:forEach items="#{myAccountOrdersBean.allMyOrders}" var="order">
+                                <c:set var="nbOrder" value="1"/>
+                                <tr>
+                                    <td><h:outputText value="#{order.dateOrder}" >
+                                            <f:convertDateTime />
+                                        </h:outputText></td>
+                                    <td><h:outputText value="#{order.totalPrice}">
+                                                <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                        </h:outputText></td>
+                                    <td><h:outputText value="#{myAccountOrdersBean.getStateText(order.stateOrder)}"/></td>
+                                    <td><h:link outcome="myAccountOrderView" >
+                                            <div  class="button tiny">
+                                                <f:param name="id" value="#{order.id}" />
+                                                Voir                           
+                                            </div>
+                                        </h:link></td>
+                                </tr>
+                            </c:forEach>
+                            <c:if test="#{nbOrder eq 0}">
+                                <tr>
+                                    <td colspan="4" class="text-center">Vous n'avez pas encore effectué de commande.</td>
+                                </tr>
+                            </c:if>
+                        </tbody>
+                                
+                    </table>
+                </div>
                     
                     
 

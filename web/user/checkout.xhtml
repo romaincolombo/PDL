@@ -12,52 +12,152 @@
             <f:metadata>
         <f:viewParam name="id" value="#{orderBean.orderId}" />
     </f:metadata>
-            <ui:define name="content">         
-                <c:choose>
-                    
-                    
-                    <c:when test="#{orderBean.orderId eq 0}">
-                        Une erreur système est survenue pendant la commande. Veuillez réessayer ulterieurement.
-                        Cliquez ici pour réessayer
-                    </c:when>
-                    
-                    
-                    
-                    <c:when test="#{orderBean.orderId ne null}">
-                        Votre commande est terminée. Vous pouvez y accéder depuis votre espace personnel et y suivre son évolution. 
-                        Merci pour votre confiance et à très bientot.
-                        Accédez à votre commande.
-                    </c:when>
-                    
-                    
-                    <c:when test="#{cartBean.numberOfItems eq 0}">Vous n'avez pas d'articles</c:when>
-                    
-                    
-                    
-                    
-                    <c:otherwise>
-                        Checkout
-                        <h:form>
-                            <h:message for="ccType" class="error"/>
-                            <h:selectOneMenu id="ccType" value="#{orderBean.ccType}">
-                                <f:selectItem itemValue="visa" itemLabel="Visa" />
-                                <f:selectItem itemValue="mastercard" itemLabel="Master Card" />
-                                <f:selectItem itemValue="amex" itemLabel="American Express" />
-                            </h:selectOneMenu>
-                            <h:message for="ccNumber" class="error"/>
-                            <h:inputText id="ccNumber" value="#{orderBean.ccNumber}"/>
-                            <h:message for="ccExpiry" class="error"/>
-                            <h:inputText id="ccExpiry" value="#{orderBean.ccExpiry}" />
-                            <h:commandButton action="#{orderBean.confirm()}" value="Valider et commander"/>
-                        </h:form>
-                    
-                    
-                    
-                    </c:otherwise>
-                    
-                    
-                    
-                </c:choose>
+            <ui:define name="content">       
+                
+                <div class="row" >
+                    <div class="large-12 columns" >
+                        <h3><i class="fa fa-shopping-cart"></i> Commander</h3>
+                
+                        <c:choose>
+
+
+                            <c:when test="#{orderBean.orderId eq 0}">
+                                <h5>Erreur</h5>
+                                Une erreur système est survenue pendant la commande. Veuillez réessayer ulterieurement.<br/><br/>
+                                <h:link outcome="checkout" >Cliquez ici pour réessayer</h:link>
+                            </c:when>
+
+
+
+                            <c:when test="#{orderBean.orderId ne null}">
+                                <h5>Merci</h5>
+                                Votre commande est terminée. <br/><br/>Vous pouvez y accéder depuis votre espace personnel et y suivre son évolution.<br/>
+                                Merci pour votre confiance et à très bientot.<br/><br/>
+                                <div class="text-center">
+                                    <h:link outcome="myAccountOrderView" >
+                                        <div  class="button tiny ">
+                                            <f:param name="id" value="#{orderBean.orderId}" />
+                                            Accédez à votre commande                               
+                                        </div>
+                                    </h:link>
+                                </div>
+                            </c:when>
+
+
+                            <c:when test="#{cartBean.numberOfItems eq 0}">Vous n'avez pas d'articles</c:when>
+
+
+
+
+                            <c:otherwise>
+                                <c:set var="hasDiscount" value="#{orderBean.discount ne 1.0}"/>
+                                
+                                <h5>Récapitulatif de la commande</h5>
+                                <c:if test="#{hasDiscount}">
+                                    Ce récapitulatif comprend votre réduction de -20% accordée aux professionels
+                                </c:if>
+                                <table style="margin-left:auto;margin-right:auto;">
+                                    <c:forEach var="cartItem" items="#{cartBean.cart}">
+                                        <tr>
+                                            <td><h:outputText value="#{cartItem.value}" />x</td>
+                                            <td><h:outputText value="#{cartItem.key.title}" /></td>
+                                            <c:if test="#{hasDiscount}">
+                                                <td>
+                                                    <span style="text-decoration:line-through;">
+                                                        <h:outputText value="#{cartItem.key.price * cartItem.value}">
+                                                            <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                        </h:outputText>
+                                                    </span>
+                                                </td>
+                                            </c:if>
+                                            <td>
+                                                <h:outputText value="#{cartItem.key.price * cartItem.value * orderBean.discount}">
+                                                    <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                </h:outputText>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="2"><b>Total</b></td>
+                                        <c:if test="#{hasDiscount}">
+                                            <td>
+                                                <span style="text-decoration:line-through;">
+                                                    <h:outputText value="#{cartBean.total}">
+                                                        <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                    </h:outputText>
+                                                </span>
+                                            </td>
+                                        </c:if>
+                                            
+                                        <td>
+                                            <b>
+                                                <h:outputText value="#{cartBean.total * orderBean.discount}">
+                                                    <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                                </h:outputText>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <h5>Paiement</h5>
+                                Pour valider votre commande, veuillez payez par carte bancaire le montant de 
+                                <b>
+                                    <h:outputText value="#{cartBean.total * orderBean.discount}">
+                                        <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                    </h:outputText>
+                                </b>.
+                                
+                                <h:form>
+                                    <table style="margin-left:auto;margin-right:auto;">
+                                        <tr>
+                                            <td>Type</td>
+                                            <td>
+                                                <h:selectOneMenu id="ccType" value="#{orderBean.ccType}">
+                                                    <f:selectItem itemValue="visa" itemLabel="Visa" />
+                                                    <f:selectItem itemValue="mastercard" itemLabel="Master Card" />
+                                                    <f:selectItem itemValue="amex" itemLabel="American Express" />
+                                                </h:selectOneMenu>
+                                                <h:message for="ccType" class="error"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Numéro de carte</td>
+                                            <td>
+                                                <h:inputText id="ccNumber" value="#{orderBean.ccNumber}"/>
+                                                <h:message for="ccNumber" class="error"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date d'expiration (MM/AAAA)</td>
+                                            <td>
+                                                <h:inputText id="ccExpiry" value="#{orderBean.ccExpiry}" />
+                                                <h:message for="ccExpiry" class="error"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center">
+                                                <h:commandButton class="button small green" action="#{orderBean.confirm()}" value="Payer et commander"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </h:form>
+
+
+
+                            </c:otherwise>
+
+
+
+                        </c:choose>
+                        
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>

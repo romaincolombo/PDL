@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head> </h:head>
+    <h:body>
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{myAccountOrdersBean.myOrderId}"/>
+                <f:event type="preRenderView" listener="#{myAccountOrdersBean.initMyOrder}"/>            
+            </f:metadata>
+        </f:view>
+        
+        <ui:composition template="../WEB-INF/layout/layout.xhtml">
+            
+            <ui:define name="content"> 
+                <ui:fragment rendered="#{myAccountOrdersBean.okForView}">
+                    <div class="row" >
+                        <div class="large-12 columns" >
+                            <h3><i class="fa fa-user"></i> Mon Compte > Visualisation commande</h3>
+                        </div>
+                        <h:link outcome="myAccountOrdersList">&lt; Voir toutes les commandes</h:link>
+
+                        <table style="margin-left: auto;margin-right:auto;">
+                            <tr>
+                                <td><h5>Récapitulatif</h5></td>
+                            </tr>
+                            <tr>
+                                <td>Numéro</td>
+                                <td>
+                                    <h:outputText value="#{myAccountOrdersBean.currentMyOrder.id}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>
+                                    <h:outputText value="#{myAccountOrdersBean.currentMyOrder.dateOrder}" >
+                                        <f:convertDateTime />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Montant</td>
+                                <td>
+                                    <h:outputText value="#{myAccountOrdersBean.currentMyOrder.totalPrice}">
+                                            <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Etat</td>
+                                <td>
+                                    <h:outputText value="#{myAccountOrdersBean.getStateText(myAccountOrdersBean.currentMyOrder.stateOrder)}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <h5 class="text-center">Livres commandés</h5>
+                    <table style="margin-left: auto;margin-right:auto;">
+                        <thead>
+                            <tr>
+                                <th>Quantité</th>
+                                <th>Référence</th>
+                                <th>Prix total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <ui:repeat value="#{myAccountOrdersBean.currentOrderLines}" var="line">
+                                <tr>
+                                    <td><h:outputText value="#{line.quantity}" />x</td>
+                                    <td><b><h:link outcome="/book"><f:param name="id" value="#{line.book.id}" /><h:outputText value="#{line.book.title}" /></h:link></b><br/>
+                                                    (<h:outputText value="#{line.book.author}" />)<br/>
+                                                    [<h:outputText value="#{line.book.publisher}" /> <h:outputText value="#{line.book.dateBook}" >
+                                                        <f:convertDateTime pattern="yyyy" />
+                                                    </h:outputText>]</td>
+                                    <td>
+                                        <h:outputText value="#{line.unitPrice * line.quantity}">
+                                                <f:convertNumber currencySymbol="&euro; " type="currency"/>
+                                        </h:outputText>
+                                    </td>
+                    
+                                </tr>
+                            </ui:repeat>
+                        </tbody>
+                                
+                    </table>
+
+                    </div>
+                </ui:fragment>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
