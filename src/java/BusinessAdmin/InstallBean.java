@@ -5,6 +5,7 @@
  */
 package BusinessAdmin;
 
+import Entity.AdminUser;
 import Entity.Book;
 import Entity.Category;
 import Entity.Customer;
@@ -160,7 +161,11 @@ public class InstallBean {
             orderline_test1.setQuantity(123);
             em.persist(orderline_test1);
             
-
+            AdminUser admin = new AdminUser();
+            admin.setLogin("admin");
+            admin.setPasswordHash(PasswordHash.createHash("admin"));
+            em.persist(admin);
+            
             ut.commit();
 
             
