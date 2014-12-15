@@ -61,7 +61,7 @@
                 <ul>
                     <li>Editeur : <h:outputText value="#{bookBean.currentBook.publisher}" /></li>
                     <li>Date de parution : <h:outputText value="#{bookBean.currentBook.dateBook}" >
-                                                <f:convertDateTime pattern="d-M-yyyy" />
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:outputText></li>
                     <li>Langage : <h:outputText value="#{bookBean.currentBook.languageBook}" /></li>
                     <li>Note des visiteurs : <h:outputText value="#{bookBean.currentBook.rating}" />/10</li>

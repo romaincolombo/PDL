@@ -13,20 +13,32 @@
 
                 <div class="text-center">
                     <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-users"></i> Liste des clients</h3>
+                    <p>Voici la liste des clients qui se sont inscrits sur notre site. Il est possible d'en ajouter ou d'en modifier.</p>
                     
+                    <h:link outcome="customerModify" >
+                        <div class="button tiny">
+                            <f:param name="id" value="0" />
+                            <i class="fa fa-plus"></i> Créer                              
+                        </div>
+                    </h:link>
                     <table style="margin-left: auto;margin-right:auto;">
                         <c:forEach var="customer" items="#{customerAdminBean.allCustomers}">
                                 <tr>
                                     <td>
                                         <h:link outcome="/category" >
                                             <f:param name="id" value="#{customer.id}" />
-                                            <h:outputText value="#{customer.firstName}"/> <h:outputText value="#{customer.lastName}"/>
+                                            <h:outputText value="#{customer.firstName}"/>&nbsp;<h:outputText value="#{customer.lastName}"/>
                                         </h:link>
                                     </td>
                                     <td>
-                                        <h:form>
-                                            <h:commandButton class="button tiny " value="Modifier"/>
-                                        </h:form>
+                                        <h:link outcome="customerView" >
+                                            <div  class="button tiny ">
+
+                                                <f:param name="id" value="#{customer.id}" />
+                                                <i class="fa fa-eye"></i> Voir/Modifier                                
+
+                                            </div>
+                                        </h:link>
                                     </td>
                                 </tr>
                         </c:forEach>

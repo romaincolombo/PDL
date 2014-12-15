@@ -2,9 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head> </h:head>
     <h:body>
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{customerAdminBean.customerId}"/>
+                <f:event type="preRenderView" listener="#{customerAdminBean.initCustomer}"/>            
+            </f:metadata>
+        </f:view>
+        
         <ui:composition template="../WEB-INF/layout/layout.xhtml">
             
             <ui:define name="content">
@@ -50,7 +58,7 @@
                                 <h:outputLabel value="Mot de passe" />
                             </td>
                             <td>
-                                <h:outputText value="#{customerAdminBean.password}" /> <!-- On le garde ??? -->
+                                ******* (confidentiel)
                             </td>
                         </tr>
                         <tr>
@@ -82,7 +90,7 @@
                                 <h:outputLabel value="Code postal" />
                             </td>
                             <td>
-                                <h:outputText value="#{customerAdminBean.zipcode}" />
+                                <h:outputText value="#{customerAdminBean.zipCode}" />
                             </td>
                         </tr>
                         <tr>
@@ -94,7 +102,17 @@
                             </td>
                         </tr>
                     </table>
-                    <h:commandButton class="button tiny " value="Modifier" />
+                    <h:link outcome="customerModify" >
+                        <div  class="button tiny ">
+                            <f:param name="id" value="#{customerAdminBean.customerId}" />
+                            Modifier                                
+                        </div>
+                    </h:link>
+                    <h:link outcome="customersList" >
+
+                            Retour                               
+
+                    </h:link>
                 </div>
             </ui:define>
             
