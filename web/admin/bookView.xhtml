@@ -123,6 +123,14 @@
                                 <h:outputText value="#{bookAdminBean.hardcover}" /> pages
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel value="Rubrique" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{bookAdminBean.currentBook.category.name}" />
+                            </td>
+                        </tr>
                     </table>
                     <h:link outcome="bookModify" >
                         <div  class="button tiny ">

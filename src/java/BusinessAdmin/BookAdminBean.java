@@ -6,6 +6,7 @@
 package BusinessAdmin;
 
 import Entity.Book;
+import Entity.Category;
 import Facade.BookFacade;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -74,6 +75,8 @@ public class BookAdminBean {
     @Size(min = 1, message = "Veuillez entrer une adresse d'image")
     private String image;
     
+    private Category category;
+    
     private boolean okForEdit;
     private boolean okForView;
 
@@ -124,7 +127,6 @@ public class BookAdminBean {
     }
     
     private void fillObject() {
-        SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
         currentBook.setTitle(title);
         currentBook.setDescription(description);
         currentBook.setAuthor(author);
@@ -137,6 +139,7 @@ public class BookAdminBean {
         currentBook.setIsbn(isbn);
         currentBook.setHardcover(hardcover);
         currentBook.setImage(image);
+        //currentBook.setCategory(category);
     }
     
     private void fillBean() {
@@ -152,6 +155,7 @@ public class BookAdminBean {
         isbn = currentBook.getIsbn();
         hardcover = currentBook.getHardcover();
         image = currentBook.getImage();
+        //category = currentBook.getCategory();
     }
     
     
@@ -277,6 +281,14 @@ public class BookAdminBean {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     
     public List<Book> getAllBooks() {

@@ -13,8 +13,14 @@
 
                 <div class="text-center">
                     <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-book"></i> Liste des livres</h3>
-                    <p>Voici les livres que propose notre site. Il est possible d'en ajouter ou d'en modifier.</p>
+                    <p>Voici les livres que nous proposons à la vente. Il est possible d'en ajouter ou d'en modifier.</p>
                     
+                    <h:link outcome="bookModify" >
+                        <div class="button tiny">
+                            <f:param name="id" value="0" />
+                            <i class="fa fa-plus"></i> Créer                              
+                        </div>
+                    </h:link>
                     <table style="margin-left: auto;margin-right:auto;">
                         <c:forEach var="book" items="#{bookAdminBean.allBooks}">
                                 <tr>
@@ -29,7 +35,7 @@
                                             <div  class="button tiny ">
 
                                                 <f:param name="id" value="#{book.id}" />
-                                                Voir/Modifier                                
+                                                <i class="fa fa-eye"></i> Voir/Modifier                                
 
                                             </div>
                                         </h:link>

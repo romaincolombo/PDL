@@ -18,7 +18,10 @@
             <ui:define name="content">
 
                 <div class="text-center">
-                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un client</h3>
+                    <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> 
+                        <ui:fragment rendered="#{customerAdminBean.customerId ne 0}">Modifier un client</ui:fragment>
+                        <ui:fragment rendered="#{customerAdminBean.customerId eq 0}">Créer un client</ui:fragment>
+                    </h3>
                     
                     <h:form>
                         <table style="margin-left: auto;margin-right:auto;">
@@ -107,7 +110,7 @@
 
                             <h:commandButton class="button tiny " value="Modifier" action="#{customerAdminBean.save()}"/>
 
-                            <h:link outcome="categoryView" >
+                            <h:link outcome="customerView" >
                                     <f:param name="id" value="#{customerAdminBean.customerId}" />
                                     Retour                                
                             </h:link>
@@ -117,13 +120,12 @@
 
                             <h:commandButton class="button tiny " value="Ajouter" action="#{customerAdminBean.create()}"/>
 
-                            <h:link outcome="categoriesList" >
+                            <h:link outcome="customersList" >
                                     Annuler                              
                             </h:link>
                         </ui:fragment>
 
                         <br/>
-                        </h:form>
 
                         <ui:fragment rendered="#{customerAdminBean.customerId ne 0}">
                            <h:form> 

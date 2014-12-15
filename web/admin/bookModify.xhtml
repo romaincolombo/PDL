@@ -19,13 +19,12 @@
 
                 <ui:fragment rendered="#{bookAdminBean.okForEdit}">
                     <div class="text-center">
-                        <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> Modifier un livre
+                        <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-edit"></i> 
                         <ui:fragment rendered="#{bookAdminBean.bookId ne 0}">Modifier un livre</ui:fragment>
                         <ui:fragment rendered="#{bookAdminBean.bookId eq 0}">Créer un livre</ui:fragment>
                         </h3>
 
                         <h:form id="form">
-                            <h:messages />
                             <h:inputHidden id="errorMessage" />
                             <h:message for="errorMessage" class="error" />
                             <table style="margin-left:auto; margin-right:auto;">
@@ -34,7 +33,8 @@
                                         <h:outputLabel value="Titre" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.title}" />
+                                        <h:inputText id="title" value="#{bookAdminBean.title}" />
+                                        <h:message for="title" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +42,17 @@
                                         <h:outputLabel value="Description" />
                                     </td>
                                     <td>
-                                        <h:inputTextarea value="#{bookAdminBean.description}" cols="50" rows="10" />
+                                        <h:inputTextarea id="description" value="#{bookAdminBean.description}" cols="50" rows="10" />
+                                        <h:message for="description" class="error"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputLabel value="Image" />
+                                    </td>
+                                    <td>
+                                        <h:inputText id="image" value="#{bookAdminBean.image}" />
+                                        <h:message for="image" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +60,8 @@
                                         <h:outputLabel value="Auteur" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.author}" />
+                                        <h:inputText id="author" value="#{bookAdminBean.author}" />
+                                        <h:message for="author" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,27 +69,30 @@
                                         <h:outputLabel value="Editeur" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.publisher}" />
+                                        <h:inputText id="publisher" value="#{bookAdminBean.publisher}" />
+                                        <h:message for="publisher" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel value="Date" /> (Format dd/MM/yyyy)
+                                        <h:outputLabel value="Date" /> (Format DD/MM/YYYY)
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.date}">
+                                        <h:inputText id="date" value="#{bookAdminBean.date}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
+                                        <h:message for="date" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h:outputLabel value="Prix" />
+                                        <h:outputLabel value="Prix" /> (Format X,XX €)
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.price}" > (Format XXX,XX €)
+                                        <h:inputText id="price" value="#{bookAdminBean.price}" >
                                             <f:convertNumber currencySymbol="&euro;" locale="fr_FR" type="currency"/>
                                         </h:inputText>
+                                        <h:message for="price" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,7 +100,8 @@
                                         <h:outputLabel value="Langage" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.language}" />
+                                        <h:inputText id="language" value="#{bookAdminBean.language}" />
+                                        <h:message for="language" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,7 +109,8 @@
                                         <h:outputLabel value="Nombre en stock" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.stock}" />
+                                        <h:inputText id="stock" value="#{bookAdminBean.stock}" />
+                                        <h:message for="stock" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -102,7 +118,8 @@
                                         <h:outputLabel value="Note" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.rating}" />
+                                        <h:inputText id="rating" value="#{bookAdminBean.rating}" />
+                                        <h:message for="rating" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -110,7 +127,8 @@
                                         <h:outputLabel value="Numéro ISBN" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.isbn}" />
+                                        <h:inputText id="isbn" value="#{bookAdminBean.isbn}" />
+                                        <h:message for="isbn" class="error"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -118,15 +136,25 @@
                                         <h:outputLabel value="Nombre de pages" />
                                     </td>
                                     <td>
-                                        <h:inputText value="#{bookAdminBean.hardcover}" />
+                                        <h:inputText id="hardcover" value="#{bookAdminBean.hardcover}" />
+                                        <h:message for="hardcover" class="error"/>
                                     </td>
                                 </tr>
+                                <!--<tr>
+                                    <td>
+                                        <h:outputLabel value="Numéro de la rubrique" />
+                                    </td>
+                                    <td>
+                                        <h:inputText id="category" value="#{bookAdminBean.currentBook.category.id}" />
+                                        <h:message for="category" class="error"/>
+                                    </td>
+                                </tr>-->
                             </table>
                             <ui:fragment rendered="#{bookAdminBean.bookId ne 0}">
 
                                 <h:commandButton class="button tiny " value="Modifier" action="#{bookAdminBean.save()}"/>
 
-                                <h:link outcome="categoryView" >
+                                <h:link outcome="bookView" >
                                         <f:param name="id" value="#{bookAdminBean.bookId}" />
                                         Retour                                
                                 </h:link>
@@ -137,7 +165,7 @@
 
                                 <h:commandButton class="button tiny " value="Ajouter" action="#{bookAdminBean.create()}"/>
 
-                                <h:link outcome="categoriesList" >
+                                <h:link outcome="booksList" >
                                         Annuler                              
                                 </h:link>
                                 

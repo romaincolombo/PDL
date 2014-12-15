@@ -13,11 +13,12 @@
 
                 <div class="text-center">
                     <h3><i class="fa fa-key"></i> Admin > <i class="fa fa-bookmark-o"></i> Liste des rubriques</h3>
+                    <p>Voici les rubriques sous lesquelles nos livres sont classés. Il est possible d'en ajouter ou d'en modifier.</p>
                     
                     <h:link outcome="categoryModify" >
-                        <div  class="button tiny">
+                        <div class="button tiny">
                             <f:param name="id" value="0" />
-                            Créer                              
+                            <i class="fa fa-plus"></i> Créer                              
                         </div>
                     </h:link>
                     <table style="margin-left: auto;margin-right:auto;">
@@ -34,7 +35,7 @@
                                             <div  class="button tiny ">
 
                                                 <f:param name="id" value="#{category.id}" />
-                                                Voir/Modifier                                
+                                                <i class="fa fa-eye"></i> Voir/Modifier                                
 
                                             </div>
                                         </h:link>
